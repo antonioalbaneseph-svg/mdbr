@@ -24,10 +24,10 @@
     .wrap { width:min(calc(100% - 100px),var(--max)); margin-inline:auto; }
     .masthead { border-bottom:1px solid var(--line); background:rgba(0,0,0,.97); position:sticky; top:0; z-index:20; }
     .masthead-inner { min-height:91px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-    .identity { display:flex; align-items:baseline; gap:20px; white-space:nowrap; }
+    .identity { display:flex; align-items:center; gap:16px; white-space:nowrap; }
     .wordmark { font-size:31px; letter-spacing:-.085em; font-weight:800; line-height:1; }
     .wordmark i { color:var(--accent); font-style:normal; padding-left:2px; }
-    .identity-note { font-size:10px; text-transform:uppercase; letter-spacing:.16em; line-height:1.45; color:var(--muted); max-width:130px; }
+    .identity-mark { width:86px; height:28px; display:block; flex:none; color:var(--accent); }
     nav { display:flex; align-items:center; gap:27px; }
     nav a { font-size:11px; text-transform:uppercase; letter-spacing:.13em; font-weight:700; transition:color .2s; }
     nav a:hover, .text-link:hover { color:var(--accent); }
@@ -35,20 +35,13 @@
     .language button { border:0; padding:6px 2px; background:none; color:#99a89c; font-size:10px; font-weight:700; letter-spacing:.08em; cursor:pointer; }
     .language button[aria-pressed="true"] { color:var(--ink); }
     .language .slash { font-size:9px; color:var(--line); }
-    .hero { padding:110px 0 66px; min-height:685px; }
-    .eyebrow { display:flex; align-items:center; gap:11px; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
-    .eyebrow:before { content:""; display:inline-block; width:7px; height:7px; background:var(--accent); border-radius:50%; }
-    .hero-grid { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(280px,.53fr); align-items:end; gap:65px; padding-top:70px; }
+    .hero { padding:116px 0 76px; min-height:auto; }
+    .hero-grid { display:block; padding-top:0; max-width:1160px; }
     h1, h2, h3, p { margin-top:0; }
     h1 { font-family:Georgia, 'Times New Roman', serif; font-weight:400; line-height:.96; letter-spacing:-.072em; font-size:clamp(72px,8vw,128px); margin-bottom:35px; }
     h1 .hero-line { display:block; }
     h1 em { font-weight:400; font-style:italic; color:var(--accent); }
     .hero-lede { font-family:Georgia, 'Times New Roman', serif; font-size:clamp(19px,2vw,26px); line-height:1.46; max-width:690px; letter-spacing:-.025em; }
-    .hero-side { border-top:1px solid var(--ink); padding-top:18px; padding-bottom:8px; }
-    .side-heading { color:var(--muted); font-size:10px; letter-spacing:.16em; text-transform:uppercase; margin-bottom:22px; font-weight:700; }
-    .side-grid { display:grid; grid-template-columns:30px 1fr; row-gap:20px; column-gap:8px; align-items:baseline; }
-    .side-num { color:var(--accent); font-size:12px; font-weight:700; }
-    .side-title { font-size:14px; line-height:1.4; font-weight:600; }
     .hero-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:22px; margin-top:85px; }
     .hero-bottom p { color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.13em; margin:0; }
     .hero-bottom a { font-size:11px; letter-spacing:.12em; font-weight:700; text-transform:uppercase; border-bottom:1px solid var(--ink); padding-bottom:5px; }
@@ -101,8 +94,8 @@
     .footer-inner { display:flex; gap:25px; justify-content:space-between; align-items:center; }
     footer p { color:var(--muted); font-size:11px; letter-spacing:.04em; line-height:1.5; margin:0; }
     .top-link { border-bottom:1px solid var(--ink); font-size:11px; font-weight:700; letter-spacing:.08em; padding-bottom:3px; white-space:nowrap; }
-    @media (max-width: 900px) { .wrap { width:min(calc(100% - 48px),var(--max)); } .masthead-inner{min-height:74px;} .identity-note{display:none;} nav{gap:16px;} nav a{font-size:10px;} .hero{padding-top:80px;min-height:auto;} .hero-grid{grid-template-columns:1fr;gap:50px;padding-top:54px;} h1{font-size:clamp(66px,11vw,105px);} .hero-side{max-width:500px;} .side-grid{grid-template-columns:30px 1fr;} .hero-bottom{margin-top:65px;} .about-grid{gap:40px;} .founder-grid{gap:55px;} }
-    @media (max-width: 640px) { html{scroll-padding-top:72px;} .wrap{width:calc(100% - 36px);} .masthead-inner{min-height:69px;} .wordmark{font-size:27px;} nav{gap:12px;} nav a:nth-child(2),nav a:nth-child(3){display:none;} nav a{font-size:10px;} .language{padding-left:11px;margin-left:0;} .hero{padding:70px 0 47px;} .hero-grid{padding-top:39px;gap:46px;} h1{font-size:clamp(57px,13.8vw,82px);letter-spacing:-.065em;margin-bottom:25px;} .hero-lede{font-size:20px;} .hero-bottom{margin-top:57px;gap:14px;} .hero-bottom p{max-width:185px;line-height:1.6;} .section{padding:57px 0 70px;} .section-head{margin-bottom:37px;} .section-label{margin-left:9px;} .section-aside{display:none;} .about-grid,.focus-grid,.founder-grid,.contact-grid{grid-template-columns:1fr;gap:30px;} .section-display{font-size:clamp(43px,10.2vw,57px);} .body-copy{font-size:15px;line-height:1.82;} .focus{padding:23px 0 30px;} .focus h3{margin:14px 0 9px;} .work-item{grid-template-columns:1fr 45px;gap:17px;} .work-item .work-detail{grid-column:1;grid-row:2;} .work-item .round-arrow{grid-column:2;grid-row:1;align-self:center;} .work-item h3{font-size:36px;} .founder{padding:64px 0 72px;} .founder-description{font-size:15px;} .founder-name{font-size:60px;} .contact{padding:68px 0 80px;} .contact h2{font-size:67px;} .contact-grid{gap:32px;} .contact-mail{font-size:27px;} .footer-inner{align-items:flex-start;} footer p{font-size:10px;} }
+    @media (max-width: 900px) { .wrap { width:min(calc(100% - 48px),var(--max)); } .masthead-inner{min-height:74px;} .identity-mark{width:72px;height:24px;} nav{gap:16px;} nav a{font-size:10px;} .hero{padding-top:80px;min-height:auto;} .hero-grid{padding-top:0;} h1{font-size:clamp(66px,11vw,105px);}  .side-grid{grid-template-columns:30px 1fr;} .hero-bottom{margin-top:65px;} .about-grid{gap:40px;} .founder-grid{gap:55px;} }
+    @media (max-width: 640px) { html{scroll-padding-top:72px;} .wrap{width:calc(100% - 36px);} .masthead-inner{min-height:69px;} .wordmark{font-size:27px;} .identity{gap:9px;} .identity-mark{width:51px;height:21px;} .masthead-inner{gap:11px;} nav{gap:9px;} nav a:nth-child(1),nav a:nth-child(2),nav a:nth-child(3){display:none;} nav a{font-size:10px;} .language{padding-left:11px;margin-left:0;} .hero{padding:70px 0 47px;} .hero-grid{padding-top:0;} h1{font-size:clamp(57px,13.8vw,82px);letter-spacing:-.065em;margin-bottom:25px;} .hero-lede{font-size:20px;} .hero-bottom{margin-top:57px;gap:14px;} .hero-bottom p{max-width:185px;line-height:1.6;} .section{padding:57px 0 70px;} .section-head{margin-bottom:37px;} .section-label{margin-left:9px;} .section-aside{display:none;} .about-grid,.focus-grid,.founder-grid,.contact-grid{grid-template-columns:1fr;gap:30px;} .section-display{font-size:clamp(43px,10.2vw,57px);} .body-copy{font-size:15px;line-height:1.82;} .focus{padding:23px 0 30px;} .focus h3{margin:14px 0 9px;} .work-item{grid-template-columns:1fr 45px;gap:17px;} .work-item .work-detail{grid-column:1;grid-row:2;} .work-item .round-arrow{grid-column:2;grid-row:1;align-self:center;} .work-item h3{font-size:36px;} .founder{padding:64px 0 72px;} .founder-description{font-size:15px;} .founder-name{font-size:60px;} .contact{padding:68px 0 80px;} .contact h2{font-size:67px;} .contact-grid{gap:32px;} .contact-mail{font-size:27px;} .footer-inner{align-items:flex-start;} footer p{font-size:10px;} }
 
 
     /* Public researcher identifier and Lisbon conference identity */
@@ -143,6 +136,7 @@
       .event-meta { flex-wrap:wrap; }
       .event-links { gap:14px 23px; }
     }
+    @media (max-width:380px) { nav a:nth-child(5){display:none;} }
     @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto;} *,*::before,*::after{transition:none !important;} }
   </style>
 </head>
@@ -151,7 +145,9 @@
     <div class="wrap masthead-inner">
       <a class="identity" href="#top" aria-label="MDBR, back to beginning">
         <span class="wordmark">MDBR<i>.</i></span>
-        <span class="identity-note" data-en="Independent research initiative" data-it="Iniziativa indipendente di ricerca">Independent research initiative</span>
+        <svg class="identity-mark" viewBox="0 0 240 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <path d="M8 53 C21 53 27 28 40 28 C57 28 61 54 78 54 C95 54 102 28 118 28 C135 28 141 54 157 54 C175 54 182 28 198 28 C215 28 220 53 232 53" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
       <nav aria-label="Main navigation">
         <a href="#purpose" data-en="Purpose" data-it="Visione">Purpose</a>
@@ -169,20 +165,11 @@
 
   <main id="top">
     <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="eyebrow" data-en="Independent inquiry / 2026—" data-it="Ricerca indipendente / 2026—">Independent inquiry / 2026—</div>
       <div class="hero-grid">
         <div>
           <h1 id="hero-title"><span class="hero-line" data-en="Between" data-it="Tra">Between</span><span class="hero-line" data-en="calculation" data-it="calcolo">calculation</span><span class="hero-line"><em data-en="and reason." data-it="e ragione.">and reason.</em></span></h1>
           <p class="hero-lede" data-en="A space for philosophical inquiry into language, computation, and the conditions under which knowledge claims acquire meaning and validity." data-it="Uno spazio di ricerca filosofica sul linguaggio, sul calcolo e sulle condizioni in cui le pretese di conoscenza acquistano significato e validità.">A space for philosophical inquiry into language, computation, and the conditions under which knowledge claims acquire meaning and validity.</p>
         </div>
-        <aside class="hero-side" aria-label="Three levels of inquiry">
-          <p class="side-heading" data-en="Three distinctions" data-it="Tre distinzioni">Three distinctions</p>
-          <div class="side-grid">
-            <span class="side-num">01</span><span class="side-title" data-en="Production / how an output comes to be" data-it="Produzione / come un risultato viene generato">Production / how an output comes to be</span>
-            <span class="side-num">02</span><span class="side-title" data-en="Validity / what warrants its claims" data-it="Validità / che cosa giustifica le sue pretese">Validity / what warrants its claims</span>
-            <span class="side-num">03</span><span class="side-title" data-en="Adoption / who answers for its use" data-it="Adozione / chi risponde del suo impiego">Adoption / who answers for its use</span>
-          </div>
-        </aside>
       </div>
       <div class="hero-bottom">
         <p data-en="Philosophy · Technology · Forms of knowledge" data-it="Filosofia · Tecnica · Forme del sapere">Philosophy · Technology · Forms of knowledge</p>
