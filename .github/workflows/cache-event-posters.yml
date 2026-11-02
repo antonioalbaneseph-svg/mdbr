@@ -1,0 +1,67 @@
+name: Cache verified official event posters
+
+on:
+  push:
+    paths:
+      - .github/workflows/cache-event-posters.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cache-posters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Fetch original posters only from organisers
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/events
+          fetch_one() {
+            local label="$1" dest="$2"
+            shift 2
+            local tmp
+            tmp="$(mktemp)"
+            for url in "$@"; do
+              echo "Checking official source for $label: $url"
+              if curl -fLsS --retry 2 --connect-timeout 10 --max-time 35 -A 'Mozilla/5.0 (compatible; MDBR-archive/1.0)' -e 'https://www.um.edu.mt/events/etc2026/' "$url" -o "$tmp"; then
+                mime="$(file -b --mime-type "$tmp")"
+                bytes="$(wc -c < "$tmp")"
+                if [[ "$mime" =~ ^image/(jpeg|png|webp)$ ]] && [[ "$bytes" -gt 3000 ]]; then
+                  cp "$tmp" "$dest"
+                  echo "$label: archived $bytes bytes, $mime"
+                  rm -f "$tmp"
+                  return 0
+                fi
+                echo "$label: returned $mime / $bytes bytes, not usable poster"
+              fi
+            done
+            echo "::warning::$label original poster unavailable from organiser; leaving it unarchived."
+            rm -f "$tmp"
+          }
+          fetch_one "Ischia 2026" "assets/events/ischia-2026.jpg" \
+            'https://www.sfi.it/files/source/Immagini/INPF%20-%20Call%20for%20papers%20Festival%202026%20-%20IT_page-0001.jpg'
+          fetch_one "Malta 2026" "assets/events/malta-2026.jpg" \
+            'https://www.um.edu.mt/media/um/images/events/etc2026/R4707_EtC26_Web_TopBanner%281%29.jpg' \
+            'https://www.um.edu.mt/media/um/images/events/etc2026/R4707_EtC26_Web_TopBanner(1).jpg' \
+            'https://www.um.edu.mt/media/um/images/events/etc2026/R4707_EtC26_Web_TopBanner.jpg' \
+            'https://www.um.edu.mt/media/um/images/events/etc2026/R4707_EtC26_Web_MidBanner%281%29.jpg'
+
+      - name: Store poster copies in this repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/events
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive original 2026 event artwork locally"
+            git push
+          else
+            echo "No official image could be retrieved; no generated graphics added."
+          fi
