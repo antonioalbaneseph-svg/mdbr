@@ -46,25 +46,12 @@ jobs:
           }
           fetch_one "Ischia 2026" "assets/events/ischia-2026.jpg" \
             'https://www.sfi.it/files/source/Immagini/INPF%20-%20Call%20for%20papers%20Festival%202026%20-%20IT_page-0001.jpg'
-          echo "Inspecting the current official Malta webpage for relocated 2026 artwork"
-          curl -fLsS --connect-timeout 10 --max-time 30 -A 'Mozilla/5.0' 'https://www.um.edu.mt/events/etc2026/' -o /tmp/malta-website.html || true
-          python3 - <<'PY'
-          import re
-          from pathlib import Path
-          p=Path('/tmp/malta-website.html')
-          if p.exists():
-              html=p.read_text(errors='replace')
-              for m in re.finditer(r'(?i)top.?banner|mid.?banner|etc2026|r4707|<img[^>]*>',html):
-                  t=html[max(0,m.start()-160):m.end()+210].replace('\\n',' ')
-                  if 'javascript:' not in t:
-                      print(t[:400])
-                  if m.start()>110000: break
-          PY
-          fetch_one "Malta 2026" "assets/events/malta-2026.jpg" \
-            'https://www.um.edu.mt/media/um/images/events/etc2026/R4707_EtC26_Web_TopBanner%281%29.jpg' \
-            'https://www.um.edu.mt/media/um/images/events/etc2026/R4707_EtC26_Web_TopBanner(1).jpg' \
-            'https://www.um.edu.mt/media/um/images/events/etc2026/R4707_EtC26_Web_TopBanner.jpg' \
-            'https://www.um.edu.mt/media/um/images/events/etc2026/R4707_EtC26_Web_MidBanner%281%29.jpg'
+          fetch_one "Malta 2026 official mid-banner" "assets/events/malta-2026.jpg" \
+            'https://www.um.edu.mt/media/um/images/events/2026/etc2026/R4707_EtC26_Web_MidBanner%281%29.jpg' \
+            'https://www.um.edu.mt/media/um/images/events/2026/etc2026/R4707_EtC26_Web_MidBanner(1).jpg'
+          fetch_one "Malta 2026 official top-banner" "assets/events/malta-2026-wide.jpg" \
+            'https://www.um.edu.mt/media/um/images/events/2026/etc2026/R4707_EtC26_Web_TopBanner%281%29.jpg' \
+            'https://www.um.edu.mt/media/um/images/events/2026/etc2026/R4707_EtC26_Web_TopBanner(1).jpg'
 
       - name: Store poster copies in this repository
         shell: bash
