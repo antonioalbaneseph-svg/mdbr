@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
- <rect width="64" height="64" rx="12" fill="#1d2926"/>
- <path d="M13 45V20h7l12 15 12-15h7v25h-8V31L32 44 21 31v14z" fill="#f3f0e9"/>
- <circle cx="54" cy="51" r="4" fill="#a24f39"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72" role="img" aria-label="MDBR — dune waves">
+  <rect width="240" height="72" rx="12" fill="#000000"/>
+  <path d="M8 53 C21 53 27 28 40 28 C57 28 61 54 78 54 C95 54 102 28 118 28 C135 28 141 54 157 54 C175 54 182 28 198 28 C215 28 220 53 232 53"
+        fill="none" stroke="#d5dfd5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
