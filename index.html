@@ -103,6 +103,39 @@
     .top-link { border-bottom:1px solid var(--ink); font-size:11px; font-weight:700; letter-spacing:.08em; padding-bottom:3px; white-space:nowrap; }
     @media (max-width: 900px) { .wrap { width:min(calc(100% - 48px),var(--max)); } .masthead-inner{min-height:74px;} .identity-note{display:none;} nav{gap:16px;} nav a{font-size:10px;} .hero{padding-top:80px;min-height:auto;} .hero-grid{grid-template-columns:1fr;gap:50px;padding-top:54px;} h1{font-size:clamp(66px,11vw,105px);} .hero-side{max-width:500px;} .side-grid{grid-template-columns:30px 1fr;} .hero-bottom{margin-top:65px;} .about-grid{gap:40px;} .founder-grid{gap:55px;} }
     @media (max-width: 640px) { html{scroll-padding-top:72px;} .wrap{width:calc(100% - 36px);} .masthead-inner{min-height:69px;} .wordmark{font-size:27px;} nav{gap:12px;} nav a:nth-child(2),nav a:nth-child(3){display:none;} nav a{font-size:10px;} .language{padding-left:11px;margin-left:0;} .hero{padding:70px 0 47px;} .hero-grid{padding-top:39px;gap:46px;} h1{font-size:clamp(57px,13.8vw,82px);letter-spacing:-.065em;margin-bottom:25px;} .hero-lede{font-size:20px;} .hero-bottom{margin-top:57px;gap:14px;} .hero-bottom p{max-width:185px;line-height:1.6;} .section{padding:57px 0 70px;} .section-head{margin-bottom:37px;} .section-label{margin-left:9px;} .section-aside{display:none;} .about-grid,.focus-grid,.founder-grid,.contact-grid{grid-template-columns:1fr;gap:30px;} .section-display{font-size:clamp(43px,10.2vw,57px);} .body-copy{font-size:15px;line-height:1.82;} .focus{padding:23px 0 30px;} .focus h3{margin:14px 0 9px;} .work-item{grid-template-columns:1fr 45px;gap:17px;} .work-item .work-detail{grid-column:1;grid-row:2;} .work-item .round-arrow{grid-column:2;grid-row:1;align-self:center;} .work-item h3{font-size:36px;} .founder{padding:64px 0 72px;} .founder-description{font-size:15px;} .founder-name{font-size:60px;} .contact{padding:68px 0 80px;} .contact h2{font-size:67px;} .contact-grid{gap:32px;} .contact-mail{font-size:27px;} .footer-inner{align-items:flex-start;} footer p{font-size:10px;} }
+
+    /* EVENTS — chronological, newest first */
+    .events { background:var(--paper); }
+    .events-intro { font-family:Georgia,'Times New Roman',serif; font-size:clamp(22px,2.45vw,32px); line-height:1.44; max-width:840px; margin:0 0 54px; color:var(--ink); }
+    .events-list { display:grid; gap:45px; }
+    .event { border-top:1px solid var(--line); padding-top:31px; display:grid; grid-template-columns:minmax(235px,.67fr) minmax(0,1.33fr); gap:clamp(26px,5.5vw,80px); align-items:start; }
+    .event-visual { border:1px solid var(--line); background:#141816; min-width:0; position:relative; overflow:hidden; }
+    .event-visual img { display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:contain; background:#131715; }
+    .event-visual.ischia img { aspect-ratio:3/4; object-fit:cover; object-position:center top; }
+    .event-visual small { display:block; text-align:right; padding:9px 12px; font-size:10px; color:var(--muted); letter-spacing:.02em; }
+    .event-meta { display:flex; align-items:baseline; justify-content:space-between; gap:15px; margin-bottom:18px; font-size:11px; text-transform:uppercase; letter-spacing:.11em; font-weight:700; }
+    .event-date { color:var(--accent); }
+    .event-status { color:var(--muted); text-align:right; }
+    .event h3 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(31px,3.6vw,53px); font-weight:400; line-height:1.12; letter-spacing:-.045em; margin:0 0 19px; }
+    .event-host { font-size:12px; line-height:1.65; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin:0 0 23px; }
+    .event-talk-label { font-size:10px; color:var(--accent); text-transform:uppercase; letter-spacing:.15em; font-weight:700; margin-bottom:8px; }
+    .event-talk { font-size:18px; line-height:1.48; font-weight:500; max-width:590px; margin:0 0 21px; }
+    .event-links { display:flex; flex-wrap:wrap; gap:15px 28px; margin-top:25px; }
+    .event-links a { display:inline-block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.075em; border-bottom:1px solid var(--accent); padding-bottom:7px; }
+    .event-links a:hover { color:var(--accent); }
+    .programme-entry { margin-top:31px; border-left:3px solid #e14593; background:#111b36; padding:17px 21px 19px; max-width:580px; }
+    .programme-entry-label { font-size:10px; text-transform:uppercase; letter-spacing:.12em; color:#aebfe7; margin:0 0 13px; }
+    .programme-entry time { color:#e0ecff; font-size:13px; font-weight:700; }
+    .programme-entry p { color:#f5f4fc; margin:8px 0 4px; line-height:1.55; font-size:14px; }
+    .programme-entry strong { color:#f39ac5; font-weight:600; }
+    @media (max-width:700px) {
+      .event { grid-template-columns:1fr; gap:23px; }
+      .event-visual { max-width:480px; }
+      .event-visual.ischia { max-width:330px; }
+      .events-intro { margin-bottom:34px; }
+      .event-meta { flex-wrap:wrap; }
+      .event-links { gap:14px 23px; }
+    }
     @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto;} *,*::before,*::after{transition:none !important;} }
   </style>
 </head>
@@ -117,6 +150,7 @@
         <a href="#purpose" data-en="Purpose" data-it="Visione">Purpose</a>
         <a href="#research" data-en="Research" data-it="Ricerca">Research</a>
         <a href="#founder" data-en="Founder" data-it="Fondatore">Founder</a>
+        <a href="#events" data-en="Events" data-it="Eventi">Events</a>
         <a href="#contact" data-en="Contact" data-it="Contatti">Contact</a>
         <div class="language" aria-label="Language selection">
           <button type="button" id="lang-en" aria-pressed="true" aria-label="English language">EN</button><span class="slash">/</span>
@@ -199,6 +233,60 @@
       </div>
     </section>
 
+
+    <section class="section events" id="events" aria-labelledby="events-title">
+      <div class="wrap">
+        <div class="section-head"><span class="section-index">05</span><span class="section-label" data-en="Events &amp; conferences" data-it="Eventi e conferenze">Events &amp; conferences</span><span class="section-aside" data-en="Selected contributions" data-it="Interventi selezionati">Selected contributions</span></div>
+        <h2 class="events-intro" id="events-title" data-en="Research enters into dialogue." data-it="La ricerca prende parte al dialogo.">Research enters into dialogue.</h2>
+        <div class="events-list" id="events-list">
+          <article class="event" data-date="2026-11-18">
+            <div class="event-visual">
+              <a href="https://www.um.edu.mt/events/etc2026/" target="_blank" rel="noopener noreferrer" aria-label="University of Malta official conference website">
+                <img src="https://www.um.edu.mt/media/um/images/events/etc2026/R4707_EtC26_Web_TopBanner%281%29.jpg" alt="Engaging the Contemporary 2026 — official University of Malta conference banner" loading="lazy" referrerpolicy="no-referrer">
+              </a>
+              <small data-en="Visual: University of Malta" data-it="Immagine: University of Malta">Visual: University of Malta</small>
+            </div>
+            <div>
+              <div class="event-meta"><span class="event-date">18–20 Nov 2026 · Valletta, Malta</span><span class="event-status" data-en="Scheduled presentation" data-it="Intervento in programma">Scheduled presentation</span></div>
+              <h3>Engaging the Contemporary 2026</h3>
+              <p class="event-host">Experiences of Life and Death · Department of Philosophy, University of Malta</p>
+              <div class="event-talk-label" data-en="Selected paper" data-it="Relazione selezionata">Selected paper</div>
+              <p class="event-talk">After Prometheus: Power, Residual Life, and the Fate of the Human</p>
+              <div class="event-links">
+                <a href="https://www.um.edu.mt/events/etc2026/" target="_blank" rel="noopener noreferrer" data-en="Official conference ↗" data-it="Convegno ufficiale ↗">Official conference ↗</a>
+                <a href="https://www.um.edu.mt/events/etc2026/programme/" target="_blank" rel="noopener noreferrer" data-en="Programme ↗" data-it="Programma ↗">Programme ↗</a>
+              </div>
+            </div>
+          </article>
+          <article class="event" data-date="2026-09-25">
+            <div class="event-visual ischia">
+              <a href="https://www.sfi.it/N1207/call-for-papers-in-philosophy-festival.html" target="_blank" rel="noopener noreferrer" aria-label="IN-Philosophy Festival 2026 official poster">
+                <img src="https://www.sfi.it/files/source/Immagini/INPF%20-%20Call%20for%20papers%20Festival%202026%20-%20IT_page-0001.jpg" alt="IN-Philosophy Festival 2026 official poster — Libertà. Si può essere liberi insieme?" loading="lazy" referrerpolicy="no-referrer">
+              </a>
+              <small data-en="Poster: IN-Philosophy Festival / SFI" data-it="Locandina: IN-Philosophy Festival / SFI">Poster: IN-Philosophy Festival / SFI</small>
+            </div>
+            <div>
+              <div class="event-meta"><span class="event-date">25 Sep 2026 · Ischia, Italy</span><span class="event-status" data-en="Presented" data-it="Intervento svolto">Presented</span></div>
+              <h3>IN-Philosophy Festival 2026</h3>
+              <p class="event-host">Libertà. Si può essere liberi insieme? · Villa La Colombaia, Forio</p>
+              <div class="event-talk-label" data-en="Conference talk" data-it="Relazione">Conference talk</div>
+              <p class="event-talk" lang="it">Molte sono le cose terribili. Libertà, potere e fragilità nell’umano</p>
+              <div class="programme-entry">
+                <div class="programme-entry-label" data-en="From the official programme · page 38 · Sala 1" data-it="Dal programma ufficiale · pagina 38 · Sala 1">From the official programme · page 38 · Sala 1</div>
+                <time datetime="2026-09-25T15:30">15:30</time>
+                <p><em>Molte sono le cose terribili. Libertà, potere e fragilità nell’umano</em></p>
+                <strong>Antonio Albanese</strong>
+              </div>
+              <div class="event-links">
+                <a href="https://inphilosophyfestival.it/" target="_blank" rel="noopener noreferrer" data-en="Festival website ↗" data-it="Sito del Festival ↗">Festival website ↗</a>
+                <a href="https://eventi.ischia.it/eventi-sulla-mappa/evento/250736-in-philosofy-festival-talk-quattro-sale-conferenza-ingresso-libero-a-oltre-80-talk-per-due-giorni" target="_blank" rel="noopener noreferrer" data-en="Official programme (p. 38) ↗" data-it="Programma ufficiale (p. 38) ↗">Official programme (p. 38) ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
         <div class="section-head"><span class="section-index">05</span><span class="section-label" data-en="Contact" data-it="Contatti">Contact</span><span class="section-aside" data-en="For research correspondence" data-it="Per corrispondenza scientifica">For research correspondence</span></div>
@@ -238,6 +326,11 @@
       }
       en.addEventListener('click', () => setLanguage('en'));
       it.addEventListener('click', () => setLanguage('it'));
+      // Keep new contributions in reverse chronological order.
+      const eventsList = document.getElementById('events-list');
+      [...eventsList.children]
+        .sort((a,b) => b.dataset.date.localeCompare(a.dataset.date))
+        .forEach(el => eventsList.appendChild(el));
       const currentYear = Math.max(2026, new Date().getFullYear());
       document.getElementById('copyright-years').textContent = currentYear === 2026 ? '2026' : `2026–${currentYear}`;
     })();
