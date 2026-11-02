@@ -109,11 +109,8 @@
     .orcid-link { margin-top:24px; display:inline-flex; gap:11px; align-items:center; flex-wrap:wrap; font-size:12px; letter-spacing:.015em; color:var(--cream); border-bottom:1px solid #5c7362; padding-bottom:8px; transition:border-color .2s,color .2s; }
     .orcid-link:hover { color:#cbe5d3; border-color:#aac9b5; }
     .orcid-mark { display:inline-flex; width:27px; height:27px; border-radius:50%; background:#a6ce39; align-items:center; justify-content:center; color:#19221a; font-size:12px; font-weight:700; letter-spacing:-.05em; font-family:Arial,Helvetica,sans-serif; }
-    .event-visual.lisbon { min-height:315px; background:linear-gradient(146deg,#141b1a 5%,#0a0d10 85%); display:flex; align-items:stretch; }
-    .lisbon-art { padding:clamp(25px,3.1vw,47px); display:flex; flex-direction:column; min-height:315px; justify-content:space-between; width:100%; }
-    .lisbon-art-kicker { font-size:10px; letter-spacing:.19em; text-transform:uppercase; color:#adc3ba; line-height:1.8; }
-    .lisbon-art-title { color:#edf2ee; font-family:Georgia,'Times New Roman',serif; font-size:clamp(33px,3.4vw,55px); line-height:1.08; letter-spacing:-.055em; }
-    .lisbon-art-footer { border-top:1px solid #43514c; padding-top:16px; color:#adbbb5; font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+    .event-visual.lisbon { background:#121713; }
+    .event-visual.lisbon img { object-fit:contain; background:#121713; }
     /* EVENTS — chronological, newest first */
     .events { background:var(--paper); }
     .events-intro { font-family:Georgia,'Times New Roman',serif; font-size:clamp(22px,2.45vw,32px); line-height:1.44; max-width:840px; margin:0 0 54px; color:var(--ink); }
@@ -251,11 +248,10 @@
         <div class="events-list" id="events-list">
           <article class="event" data-date="2027-01-29">
             <div class="event-visual lisbon">
-              <a class="lisbon-art" href="https://fd.lisboa.ucp.pt/news/call-papers-international-conference-ethics-eus-ai-act-2027-28646" target="_blank" rel="noopener noreferrer" aria-label="Official conference announcement for Ethics in the EU's AI Act, Lisbon">
-                <span class="lisbon-art-kicker">International Conference · 2nd Edition</span>
-                <span class="lisbon-art-title">Ethics<br>in the EU's<br>AI Act</span>
-                <span class="lisbon-art-footer">Lisbon, Portugal · 29 January 2027</span>
+              <a href="https://fd.lisboa.ucp.pt/news/call-papers-international-conference-ethics-eus-ai-act-2027-28646" target="_blank" rel="noopener noreferrer" aria-label="Official announcement of Ethics in the EU's AI Act 2027">
+                <img src="assets/events/lisbon-2027.png" alt="Official Ethics in the EU's AI Act 2027 conference graphic — Universidade Católica Portuguesa" loading="lazy">
               </a>
+              <small data-en="Image: Universidade Católica Portuguesa" data-it="Immagine: Universidade Católica Portuguesa">Image: Universidade Católica Portuguesa</small>
             </div>
             <div>
               <div class="event-meta"><span class="event-date">29 Jan 2027 · Lisbon, Portugal</span><span class="event-status" data-en="Accepted paper · upcoming" data-it="Relazione accettata · in programma">Accepted paper · upcoming</span></div>
