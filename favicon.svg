@@ -1,5 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72" role="img" aria-label="MDBR — dune waves">
-  <rect width="240" height="72" rx="12" fill="#000000"/>
-  <path d="M8 53 C21 53 27 28 40 28 C57 28 61 54 78 54 C95 54 102 28 118 28 C135 28 141 54 157 54 C175 54 182 28 198 28 C215 28 220 53 232 53"
-        fill="none" stroke="#d5dfd5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MDBR dune and wave symbol">
+  <style>
+    path { stroke: #1a2b22; }
+    @media (prefers-color-scheme: dark) { path { stroke: #d5dfd5; } }
+  </style>
+  <path d="M2 44 C6 44 7 20 12 20 C18 20 18 44 22 44 C27 44 27 20 32 20 C38 20 38 44 42 44 C47 44 47 20 52 20 C58 20 58 44 62 44"
+        fill="none" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
