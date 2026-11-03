@@ -53,12 +53,11 @@
     .wrap { width:min(calc(100% - 100px),var(--max)); margin-inline:auto; }
     .masthead { border-bottom:1px solid var(--line); background:rgba(0,0,0,.97); position:sticky; top:0; z-index:20; }
     .masthead-inner { min-height:91px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-    .identity-group { display:flex; align-items:center; gap:clamp(15px,2.6vw,39px); flex:none; }
-    .identity { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:1px; white-space:nowrap; }
-    .why-mdbr { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.11em; color:var(--accent); border-bottom:1px solid #607c6c; padding-bottom:5px; white-space:nowrap; transition:color .2s,border-color .2s; }
-    .why-mdbr:hover { color:var(--ink); border-color:var(--ink); }
+    .identity { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:1px; white-space:nowrap; flex:none; }
     .wordmark { font-size:31px; letter-spacing:-.085em; font-weight:800; line-height:1; }
-    .wordmark i { color:var(--accent); font-style:normal; padding-left:2px; }
+    .wordmark-dot { color:var(--accent); padding-left:2px; transition:color .2s; }
+    .wordmark-dot:hover { color:var(--ink); }
+    .identity-mark-link { display:block; line-height:0; }
     .identity-mark { width:92px; height:20px; display:block; flex:none; color:var(--accent); }
     nav { display:flex; align-items:center; gap:27px; }
     nav a { font-size:11px; text-transform:uppercase; letter-spacing:.13em; font-weight:700; transition:color .2s; }
@@ -138,7 +137,7 @@
     footer p { color:var(--muted); font-size:11px; letter-spacing:.04em; line-height:1.5; margin:0; }
     .top-link { border-bottom:1px solid var(--ink); font-size:11px; font-weight:700; letter-spacing:.08em; padding-bottom:3px; white-space:nowrap; }
     @media (max-width: 900px) { .wrap { width:min(calc(100% - 48px),var(--max)); } .masthead-inner{min-height:74px;} .identity-mark{width:78px;height:17px;} nav{gap:16px;} nav a{font-size:10px;} .hero{padding-top:80px;min-height:auto;} .hero-grid{padding-top:0;} h1{font-size:clamp(66px,11vw,105px);}  .side-grid{grid-template-columns:30px 1fr;} .hero-bottom{margin-top:65px;} .about-grid{gap:40px;} .name-grid{gap:48px;grid-template-columns:minmax(200px,.8fr) minmax(0,1.25fr);} .founder-grid{gap:55px;} }
-    @media (max-width: 640px) { html{scroll-padding-top:72px;} .wrap{width:calc(100% - 36px);} .masthead-inner{min-height:69px;} .wordmark{font-size:27px;} .identity{gap:0;} .identity-mark{width:66px;height:15px;} .identity-group{gap:12px;} .why-mdbr{font-size:9px;letter-spacing:.04em;} .masthead-inner{gap:11px;} nav{gap:9px;} nav a:nth-child(1),nav a:nth-child(2),nav a:nth-child(4){display:none;} nav a{font-size:10px;} .language{padding-left:11px;margin-left:0;} .hero{padding:70px 0 47px;} .hero-grid{padding-top:0;} #hero-title{font-size:clamp(55px,13.6vw,82px);letter-spacing:-.065em;margin-bottom:26px;} .hero-subtitle{font-size:clamp(20px,5vw,27px);margin-bottom:27px;} .hero-lede{font-size:20px;} .hero-bottom{margin-top:57px;gap:14px;} .hero-bottom p{max-width:185px;line-height:1.6;} .section{padding:57px 0 70px;} .section-head{margin-bottom:37px;} .section-label{margin-left:9px;} .section-aside{display:none;} .about-grid,.focus-grid,.name-grid,.founder-grid,.contact-grid{grid-template-columns:1fr;gap:30px;} .name-title{font-size:76px;} .name-expansion{font-size:22px;} .name-copy{font-size:15px;} .section-display{font-size:clamp(43px,10.2vw,57px);} .body-copy{font-size:15px;line-height:1.82;} .focus{padding:23px 0 30px;} .focus h3{margin:14px 0 9px;} .work-item{grid-template-columns:1fr 45px;gap:17px;} .work-item .work-detail{grid-column:1;grid-row:2;} .work-item .round-arrow{grid-column:2;grid-row:1;align-self:center;} .work-item h3{font-size:36px;} .founder{padding:64px 0 72px;} .founder-description{font-size:15px;} .founder-name{font-size:60px;} .contact{padding:68px 0 80px;} .contact h2{font-size:67px;} .contact-grid{gap:32px;} .contact-mail{font-size:27px;} .footer-inner{align-items:flex-start;} footer p{font-size:10px;} }
+    @media (max-width: 640px) { html{scroll-padding-top:72px;} .wrap{width:calc(100% - 36px);} .masthead-inner{min-height:69px;} .wordmark{font-size:27px;} .identity{gap:0;} .identity-mark{width:66px;height:15px;} .masthead-inner{gap:11px;} nav{gap:9px;} nav a:nth-child(1),nav a:nth-child(2),nav a:nth-child(4){display:none;} nav a{font-size:10px;} .language{padding-left:11px;margin-left:0;} .hero{padding:70px 0 47px;} .hero-grid{padding-top:0;} #hero-title{font-size:clamp(55px,13.6vw,82px);letter-spacing:-.065em;margin-bottom:26px;} .hero-subtitle{font-size:clamp(20px,5vw,27px);margin-bottom:27px;} .hero-lede{font-size:20px;} .hero-bottom{margin-top:57px;gap:14px;} .hero-bottom p{max-width:185px;line-height:1.6;} .section{padding:57px 0 70px;} .section-head{margin-bottom:37px;} .section-label{margin-left:9px;} .section-aside{display:none;} .about-grid,.focus-grid,.name-grid,.founder-grid,.contact-grid{grid-template-columns:1fr;gap:30px;} .name-title{font-size:76px;} .name-expansion{font-size:22px;} .name-copy{font-size:15px;} .section-display{font-size:clamp(43px,10.2vw,57px);} .body-copy{font-size:15px;line-height:1.82;} .focus{padding:23px 0 30px;} .focus h3{margin:14px 0 9px;} .work-item{grid-template-columns:1fr 45px;gap:17px;} .work-item .work-detail{grid-column:1;grid-row:2;} .work-item .round-arrow{grid-column:2;grid-row:1;align-self:center;} .work-item h3{font-size:36px;} .founder{padding:64px 0 72px;} .founder-description{font-size:15px;} .founder-name{font-size:60px;} .contact{padding:68px 0 80px;} .contact h2{font-size:67px;} .contact-grid{gap:32px;} .contact-mail{font-size:27px;} .footer-inner{align-items:flex-start;} footer p{font-size:10px;} }
 
 
     /* Public researcher identifier and Lisbon conference identity */
@@ -178,21 +177,20 @@
       .event-meta { flex-wrap:wrap; }
       .event-links { gap:14px 23px; }
     }
-    @media (max-width:380px) { nav a:nth-child(5){display:none;} .identity-group{gap:9px;} .why-mdbr{font-size:8px;} }
+    @media (max-width:380px) { nav a:nth-child(5){display:none;} }
     @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto;} *,*::before,*::after{transition:none !important;} }
   </style>
 </head>
 <body>
   <header class="masthead">
     <div class="wrap masthead-inner">
-      <div class="identity-group">
-        <a class="identity" href="#top" aria-label="MDBR, back to beginning">
-          <span class="wordmark">MDBR<i>.</i></span>
+      <div class="identity">
+        <div class="wordmark"><a href="#top" aria-label="MDBR, back to beginning">MDBR</a><a class="wordmark-dot" href="#name" aria-label="Why MDBR? / Perché MDBR?" title="Why MDBR? / Perché MDBR?">.</a></div>
+        <a class="identity-mark-link" href="#top" aria-label="MDBR, back to beginning">
           <svg class="identity-mark" viewBox="0 0 240 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <path d="M8 53 C21 53 27 28 40 28 C57 28 61 54 78 54 C95 54 102 28 118 28 C135 28 141 54 157 54 C175 54 182 28 198 28 C215 28 220 53 232 53" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a class="why-mdbr" href="#name" data-en="Why MDBR?" data-it="Perché MDBR?">Why MDBR?</a>
       </div>
       <nav aria-label="Main navigation">
         <a href="#purpose" data-en="Purpose" data-it="Visione">Purpose</a>
