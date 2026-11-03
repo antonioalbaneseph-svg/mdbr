@@ -95,7 +95,7 @@
     footer p { color:var(--muted); font-size:11px; letter-spacing:.04em; line-height:1.5; margin:0; }
     .top-link { border-bottom:1px solid var(--ink); font-size:11px; font-weight:700; letter-spacing:.08em; padding-bottom:3px; white-space:nowrap; }
     @media (max-width: 900px) { .wrap { width:min(calc(100% - 48px),var(--max)); } .masthead-inner{min-height:74px;} .identity-mark{width:78px;height:17px;} nav{gap:16px;} nav a{font-size:10px;} .hero{padding-top:80px;min-height:auto;} .hero-grid{padding-top:0;} h1{font-size:clamp(66px,11vw,105px);}  .side-grid{grid-template-columns:30px 1fr;} .hero-bottom{margin-top:65px;} .about-grid{gap:40px;} .founder-grid{gap:55px;} }
-    @media (max-width: 640px) { html{scroll-padding-top:72px;} .wrap{width:calc(100% - 36px);} .masthead-inner{min-height:69px;} .wordmark{font-size:27px;} .identity{gap:0;} .identity-mark{width:66px;height:15px;} .masthead-inner{gap:11px;} nav{gap:9px;} nav a:nth-child(1),nav a:nth-child(2),nav a:nth-child(3){display:none;} nav a{font-size:10px;} .language{padding-left:11px;margin-left:0;} .hero{padding:70px 0 47px;} .hero-grid{padding-top:0;} h1{font-size:clamp(57px,13.8vw,82px);letter-spacing:-.065em;margin-bottom:25px;} .hero-lede{font-size:20px;} .hero-bottom{margin-top:57px;gap:14px;} .hero-bottom p{max-width:185px;line-height:1.6;} .section{padding:57px 0 70px;} .section-head{margin-bottom:37px;} .section-label{margin-left:9px;} .section-aside{display:none;} .about-grid,.focus-grid,.founder-grid,.contact-grid{grid-template-columns:1fr;gap:30px;} .section-display{font-size:clamp(43px,10.2vw,57px);} .body-copy{font-size:15px;line-height:1.82;} .focus{padding:23px 0 30px;} .focus h3{margin:14px 0 9px;} .work-item{grid-template-columns:1fr 45px;gap:17px;} .work-item .work-detail{grid-column:1;grid-row:2;} .work-item .round-arrow{grid-column:2;grid-row:1;align-self:center;} .work-item h3{font-size:36px;} .founder{padding:64px 0 72px;} .founder-description{font-size:15px;} .founder-name{font-size:60px;} .contact{padding:68px 0 80px;} .contact h2{font-size:67px;} .contact-grid{gap:32px;} .contact-mail{font-size:27px;} .footer-inner{align-items:flex-start;} footer p{font-size:10px;} }
+    @media (max-width: 640px) { html{scroll-padding-top:72px;} .wrap{width:calc(100% - 36px);} .masthead-inner{min-height:69px;} .wordmark{font-size:27px;} .identity{gap:0;} .identity-mark{width:66px;height:15px;} .masthead-inner{gap:11px;} nav{gap:9px;} nav a:nth-child(1),nav a:nth-child(2),nav a:nth-child(4){display:none;} nav a{font-size:10px;} .language{padding-left:11px;margin-left:0;} .hero{padding:70px 0 47px;} .hero-grid{padding-top:0;} h1{font-size:clamp(57px,13.8vw,82px);letter-spacing:-.065em;margin-bottom:25px;} .hero-lede{font-size:20px;} .hero-bottom{margin-top:57px;gap:14px;} .hero-bottom p{max-width:185px;line-height:1.6;} .section{padding:57px 0 70px;} .section-head{margin-bottom:37px;} .section-label{margin-left:9px;} .section-aside{display:none;} .about-grid,.focus-grid,.founder-grid,.contact-grid{grid-template-columns:1fr;gap:30px;} .section-display{font-size:clamp(43px,10.2vw,57px);} .body-copy{font-size:15px;line-height:1.82;} .focus{padding:23px 0 30px;} .focus h3{margin:14px 0 9px;} .work-item{grid-template-columns:1fr 45px;gap:17px;} .work-item .work-detail{grid-column:1;grid-row:2;} .work-item .round-arrow{grid-column:2;grid-row:1;align-self:center;} .work-item h3{font-size:36px;} .founder{padding:64px 0 72px;} .founder-description{font-size:15px;} .founder-name{font-size:60px;} .contact{padding:68px 0 80px;} .contact h2{font-size:67px;} .contact-grid{gap:32px;} .contact-mail{font-size:27px;} .footer-inner{align-items:flex-start;} footer p{font-size:10px;} }
 
 
     /* Public researcher identifier and Lisbon conference identity */
@@ -152,8 +152,8 @@
       <nav aria-label="Main navigation">
         <a href="#purpose" data-en="Purpose" data-it="Visione">Purpose</a>
         <a href="#research" data-en="Research" data-it="Ricerca">Research</a>
-        <a href="#founder" data-en="Founder" data-it="Fondatore">Founder</a>
         <a href="#events" data-en="Events" data-it="Eventi">Events</a>
+        <a href="#founder" data-en="Founder" data-it="Fondatore">Founder</a>
         <a href="#contact" data-en="Contact" data-it="Contatti">Contact</a>
         <div class="language" aria-label="Language selection">
           <button type="button" id="lang-en" aria-pressed="true" aria-label="English language">EN</button><span class="slash">/</span>
@@ -213,24 +213,9 @@
       </div>
     </section>
 
-    <section class="founder" id="founder" aria-labelledby="founder-title">
-      <div class="wrap">
-        <div class="section-head"><span class="section-index">04</span><span class="section-label" data-en="Founder" data-it="Fondatore">Founder</span><span class="section-aside" data-en="Independent research" data-it="Ricerca indipendente">Independent research</span></div>
-        <div class="founder-grid">
-          <div><h2 class="founder-name" id="founder-title">Antonio<br>Albanese</h2><div class="founder-role" data-en="Founder &amp; Director" data-it="Fondatore e direttore">Founder &amp; Director</div><a class="orcid-link" href="https://orcid.org/0009-0000-1722-0438" target="_blank" rel="noopener noreferrer" aria-label="Antonio Albanese ORCID profile: 0009-0000-1722-0438"><span class="orcid-mark" aria-hidden="true">iD</span><span>ORCID · 0009-0000-1722-0438 ↗</span></a></div>
-          <div class="founder-description">
-            <p data-en="Antonio Albanese is an independent researcher with an interdisciplinary education in theoretical philosophy and civil engineering. He graduated with honours in theoretical philosophy from the University of Naples Federico II." data-it="Antonio Albanese è un ricercatore indipendente con una formazione interdisciplinare in filosofia teoretica e ingegneria civile. Si è laureato con lode in filosofia teoretica presso l'Università degli Studi di Napoli Federico II.">Antonio Albanese is an independent researcher with an interdisciplinary education in theoretical philosophy and civil engineering. He graduated with honours in theoretical philosophy from the University of Naples Federico II.</p>
-            <p data-en="His research addresses the ontological and epistemological implications of contemporary computation, with particular attention to language models, the principle of reason, and the relation between technical criteria and normative judgment." data-it="La sua ricerca affronta le implicazioni ontologiche ed epistemologiche del calcolo contemporaneo, con particolare attenzione ai modelli linguistici, al principio di ragione e alla relazione fra criteri tecnici e giudizio normativo.">His research addresses the ontological and epistemological implications of contemporary computation, with particular attention to language models, the principle of reason, and the relation between technical criteria and normative judgment.</p>
-            <div class="founder-note" data-en="MDBR currently operates as a founder-led independent research initiative, open to scholarly exchange and future collaborations." data-it="MDBR opera attualmente come iniziativa di ricerca indipendente, promossa dal suo fondatore e aperta al confronto scientifico e a future collaborazioni.">MDBR currently operates as a founder-led independent research initiative, open to scholarly exchange and future collaborations.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
     <section class="section events" id="events" aria-labelledby="events-title">
       <div class="wrap">
-        <div class="section-head"><span class="section-index">05</span><span class="section-label" data-en="Events &amp; conferences" data-it="Eventi e conferenze">Events &amp; conferences</span><span class="section-aside" data-en="Selected contributions" data-it="Interventi selezionati">Selected contributions</span></div>
+        <div class="section-head"><span class="section-index">04</span><span class="section-label" data-en="Events &amp; conferences" data-it="Eventi e conferenze">Events &amp; conferences</span><span class="section-aside" data-en="Selected contributions" data-it="Interventi selezionati">Selected contributions</span></div>
         <h2 class="events-intro" id="events-title" data-en="Research enters into dialogue." data-it="La ricerca prende parte al dialogo.">Research enters into dialogue.</h2>
         <div class="events-list" id="events-list">
           <article class="event" data-date="2027-01-29">
@@ -298,6 +283,21 @@
         </div>
       </div>
     </section>
+
+    <section class="founder" id="founder" aria-labelledby="founder-title">
+      <div class="wrap">
+        <div class="section-head"><span class="section-index">05</span><span class="section-label" data-en="Founder" data-it="Fondatore">Founder</span><span class="section-aside" data-en="Independent research" data-it="Ricerca indipendente">Independent research</span></div>
+        <div class="founder-grid">
+          <div><h2 class="founder-name" id="founder-title">Antonio<br>Albanese</h2><div class="founder-role" data-en="Founder &amp; Director" data-it="Fondatore e direttore">Founder &amp; Director</div><a class="orcid-link" href="https://orcid.org/0009-0000-1722-0438" target="_blank" rel="noopener noreferrer" aria-label="Antonio Albanese ORCID profile: 0009-0000-1722-0438"><span class="orcid-mark" aria-hidden="true">iD</span><span>ORCID · 0009-0000-1722-0438 ↗</span></a></div>
+          <div class="founder-description">
+            <p data-en="Antonio Albanese is an independent researcher with an interdisciplinary education in theoretical philosophy and civil engineering. He graduated with honours in theoretical philosophy from the University of Naples Federico II." data-it="Antonio Albanese è un ricercatore indipendente con una formazione interdisciplinare in filosofia teoretica e ingegneria civile. Si è laureato con lode in filosofia teoretica presso l'Università degli Studi di Napoli Federico II.">Antonio Albanese is an independent researcher with an interdisciplinary education in theoretical philosophy and civil engineering. He graduated with honours in theoretical philosophy from the University of Naples Federico II.</p>
+            <p data-en="His research addresses the ontological and epistemological implications of contemporary computation, with particular attention to language models, the principle of reason, and the relation between technical criteria and normative judgment." data-it="La sua ricerca affronta le implicazioni ontologiche ed epistemologiche del calcolo contemporaneo, con particolare attenzione ai modelli linguistici, al principio di ragione e alla relazione fra criteri tecnici e giudizio normativo.">His research addresses the ontological and epistemological implications of contemporary computation, with particular attention to language models, the principle of reason, and the relation between technical criteria and normative judgment.</p>
+            <div class="founder-note" data-en="MDBR currently operates as a founder-led independent research initiative, open to scholarly exchange and future collaborations." data-it="MDBR opera attualmente come iniziativa di ricerca indipendente, promossa dal suo fondatore e aperta al confronto scientifico e a future collaborazioni.">MDBR currently operates as a founder-led independent research initiative, open to scholarly exchange and future collaborations.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
