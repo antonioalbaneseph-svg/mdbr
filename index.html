@@ -6,12 +6,41 @@
   <meta name="theme-color" content="#000000">
   <meta name="description" content="MDBR is a founder-led independent research initiative exploring philosophy, language, computation, and the grounds of knowledge.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="MDBR — Weaver and Woven">
+  <meta property="og:title" content="MDBR — Weaver and Woven.">
   <meta property="og:description" content="Weaver and Woven — The Living Being with Calculated Logos. Independent philosophical research in language, computation and technology.">
   <meta property="og:url" content="https://mdbr-inst.org/">
   <link rel="canonical" href="https://mdbr-inst.org/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://mdbr-inst.org/#website",
+        "url": "https://mdbr-inst.org/",
+        "name": "MDBR",
+        "alternateName": "Weaver and Woven",
+        "inLanguage": [
+          "en",
+          "it"
+        ],
+        "description": "Independent philosophical research in language, computation, ontology and technology."
+      },
+      {
+        "@type": "Person",
+        "@id": "https://mdbr-inst.org/#founder",
+        "name": "Antonio Albanese",
+        "url": "https://mdbr-inst.org/#founder",
+        "sameAs": [
+          "https://orcid.org/0009-0000-1722-0438"
+        ],
+        "description": "Independent researcher in theoretical philosophy, philosophy of artificial intelligence, and ontology of computation."
+      }
+    ]
+  }
+  </script>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261103">
-  <title>MDBR — Weaver and Woven</title>
+  <title>MDBR — Weaver and Woven.</title>
   <style>
     :root { color-scheme:dark; --paper:#000000; --paper-light:#0f1210; --ink:#edf2ee; --muted:#a7b4aa; --line:#343d36; --accent:#aac9b5; --dark:#151b17; --cream:#f1f4f0; --max:1320px; }
     * { box-sizing:border-box; }
@@ -169,7 +198,7 @@
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-grid">
         <div>
-          <h1 id="hero-title"><span class="hero-line" data-en="Weaver" data-it="Tessere">Weaver</span><span class="hero-line" data-en="and" data-it="ed essere">and</span><span class="hero-line"><em data-en="Woven" data-it="tessuti">Woven</em></span></h1>
+          <h1 id="hero-title"><span class="hero-line" data-en="Weaver" data-it="Tessere">Weaver</span><span class="hero-line" data-en="and" data-it="ed essere">and</span><span class="hero-line"><em data-en="Woven." data-it="tessuti.">Woven.</em></span></h1>
           <p class="hero-subtitle" data-en="The Living Being with Calculated Logos" data-it="Il vivente che ha logos calcolato">The Living Being with Calculated Logos</p>
           <p class="hero-lede" data-en="A space for philosophical inquiry into language, computation, and the conditions under which knowledge claims acquire meaning and validity." data-it="Uno spazio di ricerca filosofica sul linguaggio, sul calcolo e sulle condizioni in cui le pretese di conoscenza acquistano significato e validità.">A space for philosophical inquiry into language, computation, and the conditions under which knowledge claims acquire meaning and validity.</p>
         </div>
@@ -337,7 +366,7 @@
         document.querySelectorAll('[data-en][data-it]').forEach(el => { el.textContent = el.getAttribute('data-' + lang); });
         en.setAttribute('aria-pressed', String(lang === 'en'));
         it.setAttribute('aria-pressed', String(lang === 'it'));
-        document.title = lang === 'it' ? 'MDBR — Tessere ed essere tessuti' : 'MDBR — Weaver and Woven';
+        document.title = lang === 'it' ? 'MDBR — Tessere ed essere tessuti.' : 'MDBR — Weaver and Woven.';
       }
       en.addEventListener('click', () => setLanguage('en'));
       it.addEventListener('click', () => setLanguage('it'));
