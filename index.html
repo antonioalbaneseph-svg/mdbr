@@ -145,7 +145,7 @@
     .orcid-link:hover { color:#cbe5d3; border-color:#aac9b5; }
     .event-visual.lisbon { background:#121713; }
     .event-visual.lisbon img { object-fit:contain; background:#121713; }
-    /* EVENTS — chronological, newest first */
+    /* EVENTS — status updates and chronological groups in Europe/Rome */
     .events { background:var(--paper); }
     .events-intro { font-family:Georgia,'Times New Roman',serif; font-size:clamp(22px,2.45vw,32px); line-height:1.44; max-width:840px; margin:0 0 54px; color:var(--ink); }
     .events-list { display:grid; gap:45px; }
@@ -156,7 +156,17 @@
     .event-visual small { display:block; text-align:right; padding:9px 12px; font-size:10px; color:var(--muted); letter-spacing:.02em; }
     .event-meta { display:flex; align-items:baseline; justify-content:space-between; gap:15px; margin-bottom:18px; font-size:11px; text-transform:uppercase; letter-spacing:.11em; font-weight:700; }
     .event-date { color:var(--accent); }
-    .event-status { color:var(--muted); text-align:right; }
+    .event-status { display:inline-flex; align-items:center; flex:none; justify-content:center; text-align:center; border:1px solid currentColor; border-radius:20px; padding:5px 9px; line-height:1.15; font-size:10px; letter-spacing:.07em; white-space:nowrap; }
+    .event[data-state="upcoming"] .event-status { color:#aac9b5; }
+    .event[data-state="ongoing"] .event-status { color:#e2c38c; }
+    .event[data-state="past"] .event-status { color:#a2aaa3; }
+    .event[data-state="past"] .event-date { color:#9da69e; }
+    .event-role { margin:-1px 0 20px; font-size:11px; line-height:1.5; letter-spacing:.065em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+    .event-visual.jobless { background:#121816; border-color:#45574b; min-height:310px; }
+    .jobless-poster { min-height:310px; display:flex; flex-direction:column; justify-content:space-between; gap:19px; padding:clamp(23px,3vw,38px); color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
+    .jobless-poster .jobless-edition { font-size:11px; font-weight:700; letter-spacing:.14em; color:var(--accent); text-transform:uppercase; }
+    .jobless-poster strong { font-size:clamp(29px,3.1vw,47px); font-weight:700; line-height:1.04; text-transform:uppercase; letter-spacing:-.055em; }
+    .jobless-poster .jobless-place { color:#c5d4c9; font-size:11px; letter-spacing:.08em; text-transform:uppercase; line-height:1.5; }
     .event h3 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(31px,3.6vw,53px); font-weight:400; line-height:1.12; letter-spacing:-.045em; margin:0 0 19px; }
     .event-host { font-size:12px; line-height:1.65; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin:0 0 23px; }
     .event-talk-label { font-size:10px; color:var(--accent); text-transform:uppercase; letter-spacing:.15em; font-weight:700; margin-bottom:8px; }
@@ -262,7 +272,7 @@
         <div class="section-head"><span class="section-index">04</span><span class="section-label" data-en="Events &amp; conferences" data-it="Eventi e conferenze">Events &amp; conferences</span><span class="section-aside" data-en="Selected contributions" data-it="Interventi selezionati">Selected contributions</span></div>
         <h2 class="events-intro" id="events-title" data-en="Research enters into dialogue." data-it="La ricerca prende parte al dialogo.">Research enters into dialogue.</h2>
         <div class="events-list" id="events-list">
-          <article class="event" data-date="2027-01-29">
+          <article class="event" data-start="2027-01-29" data-end="2027-01-29" data-state="upcoming">
             <div class="event-visual lisbon">
               <a href="https://fd.lisboa.ucp.pt/news/call-papers-international-conference-ethics-eus-ai-act-2027-28646" target="_blank" rel="noopener noreferrer" aria-label="Official announcement of Ethics in the EU's AI Act 2027">
                 <img src="assets/events/lisbon-2027.png" alt="Official Ethics in the EU's AI Act 2027 conference graphic — Universidade Católica Portuguesa" loading="lazy">
@@ -270,7 +280,8 @@
               <small data-en="Image: Universidade Católica Portuguesa" data-it="Immagine: Universidade Católica Portuguesa">Image: Universidade Católica Portuguesa</small>
             </div>
             <div>
-              <div class="event-meta"><span class="event-date">29 Jan 2027 · Lisbon, Portugal</span><span class="event-status" data-en="Accepted paper · upcoming" data-it="Relazione accettata · in programma">Accepted paper · upcoming</span></div>
+              <div class="event-meta"><span class="event-date">29 Jan 2027 · Lisbon, Portugal</span><span class="event-status" data-en="Upcoming" data-it="In programma">Upcoming</span></div>
+              <p class="event-role" data-en="Role · accepted speaker" data-it="Ruolo · relatore accettato">Role · accepted speaker</p>
               <h3>Ethics in the EU's AI Act</h3>
               <p class="event-host">2nd International Conference · Universidade Católica Portuguesa, Faculty of Law, Lisbon</p>
               <div class="event-talk-label" data-en="Accepted contribution" data-it="Contributo accettato">Accepted contribution</div>
@@ -280,7 +291,7 @@
               </div>
             </div>
           </article>
-          <article class="event" data-date="2026-11-18">
+          <article class="event" data-start="2026-11-18" data-end="2026-11-20" data-state="upcoming">
             <div class="event-visual">
               <a href="https://www.um.edu.mt/events/etc2026/" target="_blank" rel="noopener noreferrer" aria-label="University of Malta official conference website">
                 <img src="assets/events/malta-2026.jpg" alt="Engaging the Contemporary 2026 — official University of Malta conference banner" loading="lazy">
@@ -288,7 +299,8 @@
               <small data-en="Visual: University of Malta" data-it="Immagine: University of Malta">Visual: University of Malta</small>
             </div>
             <div>
-              <div class="event-meta"><span class="event-date">18–20 Nov 2026 · Valletta, Malta</span><span class="event-status" data-en="Scheduled presentation" data-it="Intervento in programma">Scheduled presentation</span></div>
+              <div class="event-meta"><span class="event-date">18–20 Nov 2026 · Valletta, Malta</span><span class="event-status" data-en="Upcoming" data-it="In programma">Upcoming</span></div>
+              <p class="event-role" data-en="Role · selected speaker" data-it="Ruolo · relatore selezionato">Role · selected speaker</p>
               <h3>Engaging the Contemporary 2026</h3>
               <p class="event-host">Experiences of Life and Death · Department of Philosophy, University of Malta</p>
               <div class="event-talk-label" data-en="Selected paper" data-it="Relazione selezionata">Selected paper</div>
@@ -299,7 +311,31 @@
               </div>
             </div>
           </article>
-          <article class="event" data-date="2026-09-25">
+          <article class="event" data-start="2026-11-07" data-end="2026-11-07" data-state="ongoing">
+            <div class="event-visual jobless">
+              <a href="https://fondazionefeltrinelli.it/partecipa/jsf2026/" target="_blank" rel="noopener noreferrer" aria-label="Official 8th Jobless Society Forum programme">
+                <div class="jobless-poster" aria-label="Event information: Eighth Jobless Society Forum, Lavoro intelligente, Bologna, 6–7 November 2026">
+                  <span class="jobless-edition">VIII Jobless Society Forum</span>
+                  <strong>Lavoro<br>intelligente</strong>
+                  <span class="jobless-place">6–7 novembre 2026<br>Fondazione MAST · Bologna</span>
+                </div>
+              </a>
+              <small data-en="Event details: Fondazione Giangiacomo Feltrinelli" data-it="Dati evento: Fondazione Giangiacomo Feltrinelli">Event details: Fondazione Giangiacomo Feltrinelli</small>
+            </div>
+            <div>
+              <div class="event-meta"><span class="event-date">7 Nov 2026 · Bologna, Italy</span><span class="event-status" data-en="Ongoing" data-it="In corso">Ongoing</span></div>
+              <p class="event-role" data-en="Role · audience attendee (not a speaker)" data-it="Ruolo · partecipazione come uditore (non relatore)">Role · audience attendee (not a speaker)</p>
+              <h3>8th Jobless Society Forum</h3>
+              <p class="event-host">Lavoro intelligente · Fondazione Giangiacomo Feltrinelli · Fondazione MAST, Bologna</p>
+              <div class="event-talk-label" data-en="Conference attendance" data-it="Partecipazione al forum">Conference attendance</div>
+              <p class="event-talk" data-en="AI, work and society: autonomy, digital sovereignty, skills and the distribution of technological power." data-it="Intelligenza artificiale, lavoro e società: autonomia, sovranità digitale, competenze e distribuzione del potere tecnologico.">AI, work and society: autonomy, digital sovereignty, skills and the distribution of technological power.</p>
+              <div class="event-links">
+                <a href="https://fondazionefeltrinelli.it/partecipa/jsf2026/" target="_blank" rel="noopener noreferrer" data-en="Official programme ↗" data-it="Programma ufficiale ↗">Official programme ↗</a>
+                <a href="https://www.mast.org/it_IT/jobless-society-forum-lavoro-intelligente" target="_blank" rel="noopener noreferrer" data-en="MAST event ↗" data-it="Evento MAST ↗">MAST event ↗</a>
+              </div>
+            </div>
+          </article>
+          <article class="event" data-start="2026-09-25" data-end="2026-09-25" data-state="past">
             <div class="event-visual ischia">
               <a href="https://www.sfi.it/N1207/call-for-papers-in-philosophy-festival.html" target="_blank" rel="noopener noreferrer" aria-label="IN-Philosophy Festival 2026 official poster">
                 <img src="assets/events/ischia-2026.jpg" alt="IN-Philosophy Festival 2026 official poster — Libertà. Si può essere liberi insieme?" loading="lazy" referrerpolicy="no-referrer">
@@ -307,7 +343,8 @@
               <small data-en="Poster: IN-Philosophy Festival / SFI" data-it="Locandina: IN-Philosophy Festival / SFI">Poster: IN-Philosophy Festival / SFI</small>
             </div>
             <div>
-              <div class="event-meta"><span class="event-date">25 Sep 2026 · Ischia, Italy</span><span class="event-status" data-en="Presented" data-it="Intervento svolto">Presented</span></div>
+              <div class="event-meta"><span class="event-date">25 Sep 2026 · Ischia, Italy</span><span class="event-status" data-en="Past" data-it="Concluso">Past</span></div>
+              <p class="event-role" data-en="Role · speaker" data-it="Ruolo · relatore">Role · speaker</p>
               <h3>IN-Philosophy Festival 2026</h3>
               <p class="event-host">Libertà. Si può essere liberi insieme? · Villa La Colombaia, Forio</p>
               <div class="event-talk-label" data-en="Conference talk" data-it="Relazione">Conference talk</div>
@@ -402,11 +439,34 @@
       }
       en.addEventListener('click', () => setLanguage('en'));
       it.addEventListener('click', () => setLanguage('it'));
-      // Keep new contributions in reverse chronological order.
+      // Recompute on every visit using Italy's civil date (not the visitor's timezone).
+      const todayParts = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit'
+      }).formatToParts(new Date());
+      const datePart = type => todayParts.find(part => part.type === type).value;
+      const today = datePart('year') + '-' + datePart('month') + '-' + datePart('day');
       const eventsList = document.getElementById('events-list');
-      [...eventsList.children]
-        .sort((a,b) => b.dataset.date.localeCompare(a.dataset.date))
-        .forEach(el => eventsList.appendChild(el));
+      const events = [...eventsList.querySelectorAll('.event')];
+      const statusRank = { ongoing: 0, upcoming: 1, past: 2 };
+      events.forEach(event => {
+        const start = event.dataset.start;
+        const end = event.dataset.end || start;
+        const state = today < start ? 'upcoming' : today > end ? 'past' : 'ongoing';
+        event.dataset.state = state;
+        const label = event.querySelector('.event-status');
+        if (label) {
+          label.dataset.en = { upcoming: 'Upcoming', ongoing: 'Ongoing', past: 'Past' }[state];
+          label.dataset.it = { upcoming: 'In programma', ongoing: 'In corso', past: 'Concluso' }[state];
+        }
+      });
+      events.sort((a,b) => {
+        const stateA = a.dataset.state, stateB = b.dataset.state;
+        if (stateA !== stateB) return statusRank[stateA] - statusRank[stateB];
+        if (stateA === 'past') return b.dataset.end.localeCompare(a.dataset.end);
+        return a.dataset.start.localeCompare(b.dataset.start);
+      }).forEach(event => eventsList.appendChild(event));
+      // The language switch keeps all event-status labels in sync.
+      setLanguage(document.documentElement.lang === 'it' ? 'it' : 'en');
       const currentYear = Math.max(2026, new Date().getFullYear());
       document.getElementById('copyright-years').textContent = currentYear === 2026 ? '2026' : `2026–${currentYear}`;
     })();
