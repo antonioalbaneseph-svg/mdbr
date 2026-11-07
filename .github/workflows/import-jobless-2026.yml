@@ -11,71 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: true
-      - name: Find official MAST image and update event
-        shell: bash
+      - name: Install dependencies
+        run: python3 -m pip install --quiet requests beautifulsoup4 pillow
+      - name: Retrieve official artwork
+        run: python3 .github/scripts/import_jobless.py
+      - name: Commit image and updated event
         run: |
-          python3 -m pip install --quiet beautifulsoup4 requests pillow
-          python3 - <<'PY'
-          import requests,bs4,urllib.parse,pathlib,io
-          from PIL import Image
-          session=requests.Session()
-          session.headers.update({'User-Agent':'Mozilla/5.0 (compatible; MDBR editorial site)'})
-          pages=['https://www.mast.org/it_IT/jobless-society-forum-lavoro-intelligente','https://www.mast.org/']
-          candidates=[]
-          for page in pages:
-              try:
-                  response=session.get(page,timeout=25);response.raise_for_status()
-                  soup=bs4.BeautifulSoup(response.text,'html.parser')
-                  for img in soup.find_all('img'):
-                      alt=(img.get('alt') or '').lower()
-                      parent=img.parent
-                      nearby=(parent.get_text(' ',strip=True) if parent else '').lower()
-                      if 'jobless' not in alt and 'lavoro intelligente' not in alt and 'jobless' not in nearby[:150]:continue
-                      for attr in ('data-src','src','data-lazy-src'):
-                          value=img.get(attr)
-                          if value and not value.startswith('data:'):
-                              candidates.append((urllib.parse.urljoin(page,value),alt))
-                      for attr in ('srcset','data-srcset'):
-                          value=img.get(attr)
-                          if value:
-                              for part in value.split(','):
-                                  url=part.strip().split(' ')[0]
-                                  if url:candidates.append((urllib.parse.urljoin(page,url),alt))
-                  print('PAGE',page,'CANDIDATES',candidates)
-              except Exception as e:print('PAGE ERROR',page,str(e))
-          output=pathlib.Path('assets/events/jobless-society-forum-2026.jpg')
-          for url,alt in candidates:
-              try:
-                  response=session.get(url,timeout=30);response.raise_for_status()
-                  img=Image.open(io.BytesIO(response.content))
-                  if img.width<320 or img.height<180:continue
-                  img=img.convert('RGB')
-                  output.parent.mkdir(parents=True,exist_ok=True)
-                  img.save(output,format='JPEG',quality=88,optimize=True)
-                  print('SELECTED',url,'DIMENSIONS',img.size)
-                  break
-              except Exception as e:print('IMAGE ERROR',url,str(e))
-          if not output.exists():raise RuntimeError('Could not identify and download verified official Jobless Society Forum artwork')
-          path=pathlib.Path('index.html')
-          html=path.read_text()
-          a=html.index('            <div class="event-visual jobless">')
-          b=html.index('            <div>',a+len('            <div class="event-visual jobless">'))
-          # Replace only visual block up to the following content column.
-          end=html.index('            <div>\n              <div class="event-meta">',a)
-          replacement='''            <div class="event-visual jobless">
-              <a href="https://www.mast.org/it_IT/jobless-society-forum-lavoro-intelligente" target="_blank" rel="noopener noreferrer" aria-label="Official 8th Jobless Society Forum artwork">
-                <img src="assets/events/jobless-society-forum-2026.jpg" alt="Official VIII Jobless Society Forum — Lavoro Intelligente artwork, MAST and Fondazione Feltrinelli" loading="lazy">
-              </a>
-              <small data-en="Image: Fondazione MAST / Fondazione Feltrinelli" data-it="Immagine: Fondazione MAST / Fondazione Feltrinelli">Image: Fondazione MAST / Fondazione Feltrinelli</small>
-            </div>
-'''
-          html=html[:a]+replacement+html[end:]
-          path.write_text(html)
-          PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html assets/events/jobless-society-forum-2026.jpg
-          git commit -m "Use verified official Jobless Society Forum artwork"
+          git commit -m "Use official Jobless Society Forum poster"
           git push
