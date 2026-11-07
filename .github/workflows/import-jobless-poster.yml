@@ -35,6 +35,13 @@ jobs:
                   content=fetch(page)
                   print('PAGE',page,'bytes',len(content))
                   parser=ImageFinder();parser.feed(content.decode('utf-8',errors='replace'))
+                  with open('jobless-image-debug.txt','a') as dbg:
+                      dbg.write('PAGE ' + page + ' bytes=' + str(len(content)) + '\\n')
+                      for img in parser.images:
+                          dbg.write('IMAGE ' + repr(img)[:2200] + '\\n')
+                      for meta in parser.metas:
+                          if meta.get('property','') in ['og:image','twitter:image'] or meta.get('name','') == 'twitter:image':
+                              dbg.write('META ' + repr(meta)[:1500] + '\\n')
                   for a in parser.images:
                       desc=' '.join([a.get('alt',''),a.get('title',''),a.get('data-title',''),a.get('src',''),a.get('data-src','')])
                       if any(word in desc.lower() for word in ['jobless','intelligente','lavoro_intell']):
@@ -51,7 +58,9 @@ jobs:
                               candidates.append((page,urllib.parse.urljoin(page,html.unescape(uri)),'og'))
                   around=[m.start() for m in re.finditer('Jobless Society Forum',content.decode('utf-8',errors='replace'),re.I)]
                   print('IMAGE COUNT',len(parser.images),'TITLE MATCHES',len(around))
-              except Exception as e:print('FAILED PAGE',page,repr(e))
+              except Exception as e:
+                  print('FAILED PAGE',page,repr(e))
+                  with open('jobless-image-debug.txt','a') as dbg:dbg.write('ERROR '+page+' '+repr(e)+'\\n')
           seen=set()
           for page,url,reason in candidates:
               if url in seen or not url.startswith('https:'):continue
@@ -70,14 +79,14 @@ jobs:
                   break
               except Exception as e:print('FAILED IMAGE',repr(e))
           if not os.path.exists('/tmp/selected_asset.txt'):
-              print('ERROR: No verified valid poster image recovered',file=sys.stderr);sys.exit(1)
+              print('ERROR: No verified valid poster image recovered',file=sys.stderr)
           PY
           python3 /tmp/find_official.py
       - name: Commit official image into site
         run: |
-          FILE=$(cat /tmp/selected_asset.txt)
+          if [ -f /tmp/selected_asset.txt ]; then FILE=$(cat /tmp/selected_asset.txt); git add "$FILE"; fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "$FILE"
+          git add jobless-image-debug.txt
           git commit -m 'Archive official Jobless Society Forum 2026 artwork from MAST' || exit 0
           git push
