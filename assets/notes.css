@@ -33,3 +33,4 @@ footer{border-top:1px solid var(--line);padding:25px 0 40px;color:var(--muted);f
 .note-thumb{display:block;margin-top:18px;max-width:230px}.note-thumb img{display:block;width:100%;height:auto;border:1px solid var(--line)}.subnav a+a{margin-left:22px}
 .note-list+.subscribe{margin-bottom:110px}
 .article .note-byline{font:13px/1.8 Arial,Helvetica,sans-serif;color:var(--muted);margin:30px 0 0}.article .note-byline a{color:var(--accent);border-bottom:1px solid var(--accent)}.article-meta a{color:var(--accent)}
+.note-meta small{display:block;color:var(--muted);font-size:11px}
