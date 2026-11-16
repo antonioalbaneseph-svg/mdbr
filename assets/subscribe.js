@@ -1,4 +1,4 @@
-/* MDBR – newsletter subscription (MailerLite, double opt-in). Progressive enhancement: without JS the form posts directly to Kit. */
+/* MDBR – newsletter subscription (MailerLite, double opt-in). Progressive enhancement: without JS the form posts directly to MailerLite. */
 (() => {
   const forms = document.querySelectorAll('form.subscribe-form');
   if (!forms.length) return;
