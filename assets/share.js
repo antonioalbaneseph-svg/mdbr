@@ -21,6 +21,15 @@
       native.hidden = false;
       native.addEventListener('click', () => { navigator.share({ title: text(), url: url() }).catch(() => {}); });
     }
+    // Instagram e TikTok non hanno un link di condivisione dal web:
+    // sul telefono si apre il pannello di condivisione (dove compaiono le app), altrove si copia il link.
+    const appShare = (name) => async () => {
+      if (navigator.share) { try { await navigator.share({ title: text(), text: text(), url: url() }); return; } catch (_) { return; } }
+      try { await navigator.clipboard.writeText(url()); say('Link copied: paste it into ' + name + '.', 'Link copiato: incollalo su ' + name + '.'); }
+      catch (_) { say('Copy this link for ' + name + ': ' + url(), 'Copia questo link per ' + name + ': ' + url()); }
+    };
+    const ig = box.querySelector('.share-ig'); if (ig) ig.addEventListener('click', appShare('Instagram'));
+    const tt = box.querySelector('.share-tt'); if (tt) tt.addEventListener('click', appShare('TikTok'));
     const copy = box.querySelector('.share-copy');
     if (copy) copy.addEventListener('click', async () => {
       try { await navigator.clipboard.writeText(url()); say('Link copied.', 'Link copiato.'); }
