@@ -45,9 +45,8 @@
     btn.setAttribute('aria-pressed', playing && !paused ? 'true' : 'false');
     btn.querySelector('.listen-label').textContent =
       !playing ? t('Ascolta', 'Listen') : paused ? t('Riprendi', 'Resume') : t('Pausa', 'Pause');
-    btn.querySelector('.listen-ico').textContent = playing && !paused ? '❚❚' : '▶';
-    stopBtn.hidden = !playing;
-    status.textContent = playing ? t('Lettura ', 'Reading ') + (idx + 1) + ' / ' + queue.length : '';
+        stopBtn.hidden = !playing; box.querySelector('.listen-sep').hidden = !playing; box.querySelector('.listen-note').hidden = playing;
+    status.textContent = playing ? '· ' + (idx + 1) + ' / ' + queue.length : '';
   }
 
   function speakNext() {

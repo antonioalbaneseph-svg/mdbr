@@ -42,10 +42,12 @@ footer{border-top:1px solid var(--line);padding:25px 0 40px;color:var(--muted);f
 .talk-card-kicker{font:600 11px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 
 /* Ascolta / Listen */
-.listen{display:flex;align-items:center;gap:12px;margin:0 0 28px;flex-wrap:wrap}
-.listen-btn,.listen-stop{display:inline-flex;align-items:center;gap:10px;background:none;color:var(--ink);border:1px solid var(--line);border-radius:22px;padding:9px 18px;font:600 12px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
-.listen-btn:hover,.listen-stop:hover{border-color:var(--accent);color:var(--accent)}
-.listen-btn[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
-.listen-ico{font-size:11px;letter-spacing:0}
-.listen-status{font:12px Arial,sans-serif;color:var(--muted)}
+.listen{display:flex;align-items:center;gap:6px;margin:-4px 0 26px;font:13px/1.5 Arial,sans-serif;color:var(--muted);flex-wrap:wrap}
+.listen button{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
+.listen-btn{display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
+.listen-btn:hover .listen-label,.listen-stop:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.listen-btn svg{width:1em;height:1em;flex:none;fill:currentColor;}
+.listen-btn[aria-pressed="true"]{color:var(--accent)}
+.listen-note{color:var(--muted)}
+.listen-sep{color:var(--line)}
 .listen [hidden]{display:none}
