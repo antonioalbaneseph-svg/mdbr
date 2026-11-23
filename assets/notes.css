@@ -69,6 +69,6 @@ footer{border-top:1px solid var(--line);padding:25px 0 40px;color:var(--muted);f
 .podcast-bar::-moz-range-track{height:1px;background:var(--line)}
 .podcast-bar::-webkit-slider-thumb{-webkit-appearance:none;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:-3px;border:0}
 .podcast-bar::-moz-range-thumb{width:7px;height:7px;border-radius:50%;background:var(--accent);border:0}
-.podcast-rates{display:inline-flex;gap:10px}
+.podcast-rates{display:inline-flex;gap:9px}
 .podcast-rates button[aria-pressed="true"]{color:var(--ink);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--accent)}
 .podcast-rates button:hover{color:var(--accent)}

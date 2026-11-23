@@ -10,7 +10,7 @@
   var status = box.querySelector('.listen-status');
   var token = 0; var queue = [], idx = 0, playing = false, paused = false;
   var rateBtn = box.querySelector('.listen-rate');
-  var RATES = [1, 1.25, 1.5], rate = 1;
+  var RATES = [1, 1.1, 1.2, 1.3, 1.4, 1.5], rate = 1;
   try { var r = parseFloat(localStorage.getItem('mdbr-listen-rate')); if (RATES.indexOf(r) > -1) rate = r; } catch (_) {}
   function fmt(r) { var s = String(r) + '×'; return lang() === 'it' ? s.replace('.', ',') : s; }
 
