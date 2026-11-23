@@ -8,7 +8,11 @@
   var btn = box.querySelector('.listen-btn');
   var stopBtn = box.querySelector('.listen-stop');
   var status = box.querySelector('.listen-status');
-  var queue = [], idx = 0, playing = false, paused = false;
+  var token = 0; var queue = [], idx = 0, playing = false, paused = false;
+  var rateBtn = box.querySelector('.listen-rate');
+  var RATES = [1, 1.25, 1.5], rate = 1;
+  try { var r = parseFloat(localStorage.getItem('mdbr-listen-rate')); if (RATES.indexOf(r) > -1) rate = r; } catch (_) {}
+  function fmt(r) { var s = String(r) + '×'; return lang() === 'it' ? s.replace('.', ',') : s; }
 
   function lang() { return (document.documentElement.lang || 'it').slice(0, 2); }
   function t(it, en) { return lang() === 'it' ? it : en; }
@@ -45,32 +49,38 @@
     btn.setAttribute('aria-pressed', playing && !paused ? 'true' : 'false');
     btn.querySelector('.listen-label').textContent =
       !playing ? t('Ascolta', 'Listen') : paused ? t('Riprendi', 'Resume') : t('Pausa', 'Pause');
-        stopBtn.hidden = !playing; box.querySelector('.listen-sep').hidden = !playing; box.querySelector('.listen-note').hidden = playing;
+        stopBtn.hidden = !playing; box.querySelector('.listen-sep').hidden = !playing; box.querySelector('.listen-note').hidden = playing; if (rateBtn) rateBtn.querySelector('.listen-rate-val').textContent = fmt(rate);
     status.textContent = playing ? '· ' + (idx + 1) + ' / ' + queue.length : '';
   }
 
   function speakNext() {
     if (!playing || paused) return;
     if (idx >= queue.length) { stop(); return; }
-    var u = new SpeechSynthesisUtterance(queue[idx]);
+    var u = new SpeechSynthesisUtterance(queue[idx]); var my = ++token;
     var l = lang();
     u.lang = l === 'it' ? 'it-IT' : 'en-GB';
     var v = pickVoice(l); if (v) u.voice = v;
-    u.rate = 1;
-    u.onend = function () { if (playing && !paused) { idx++; setUI(); speakNext(); } };
+    u.rate = rate;
+    u.onend = function () { if (my === token && playing && !paused) { idx++; setUI(); speakNext(); } };
     u.onerror = function (e) { if (e.error !== 'interrupted' && e.error !== 'canceled') { idx++; speakNext(); } };
     synth.speak(u);
     setUI();
   }
 
-  function stop() { playing = false; paused = false; idx = 0; synth.cancel(); setUI(); }
+  function stop() { token++; playing = false; paused = false; idx = 0; synth.cancel(); setUI(); }
 
   btn.addEventListener('click', function () {
     if (!playing) { queue = buildQueue(); idx = 0; playing = true; paused = false; synth.cancel(); speakNext(); }
-    else if (!paused) { paused = true; synth.cancel(); setUI(); }        // pausa: si riprende dal paragrafo corrente
+    else if (!paused) { paused = true; token++; synth.cancel(); setUI(); }        // pausa: si riprende dal paragrafo corrente
     else { paused = false; speakNext(); }
   });
   stopBtn.addEventListener('click', stop);
+  if (rateBtn) rateBtn.addEventListener('click', function () {
+    rate = RATES[(RATES.indexOf(rate) + 1) % RATES.length];
+    try { localStorage.setItem('mdbr-listen-rate', String(rate)); } catch (_) {}
+    if (playing && !paused) { token++; synth.cancel(); setTimeout(speakNext, 60); } // riparte il paragrafo corrente alla nuova velocità
+    setUI();
+  });
 
   // cambio lingua dalla barra IT/EN: si ferma la lettura
   new MutationObserver(function () { if (playing) stop(); else setUI(); })

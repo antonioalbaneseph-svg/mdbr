@@ -51,3 +51,4 @@ footer{border-top:1px solid var(--line);padding:25px 0 40px;color:var(--muted);f
 .listen-note{color:var(--muted)}
 .listen-sep{color:var(--line)}
 .listen [hidden]{display:none}
+.listen-rate:hover{color:var(--accent)}.listen-rate-val{color:var(--ink)}
