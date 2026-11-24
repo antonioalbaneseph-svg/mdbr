@@ -21,13 +21,31 @@
       native.hidden = false;
       native.addEventListener('click', () => { navigator.share({ title: text(), url: url() }).catch(() => {}); });
     }
-    // Instagram e TikTok non hanno un link di condivisione dal web:
-    // sul telefono si apre il pannello di condivisione (dove compaiono le app), altrove si copia il link.
+    // Instagram e TikTok non accettano link dal web: si condivide la card verticale della pagina
+    // (pronta per storie e TikTok) e intanto si copia il link, da incollare nello sticker Link.
+    const cardUrl = () => box.dataset['story' + (lang() === 'it' ? 'It' : 'En')];
+    const files = {};
+    const preload = () => { const c = cardUrl(); if (!c || files[c]) return;
+      files[c] = fetch(c).then(r => r.blob()).then(b => new File([b], c.split('/').pop(), { type: 'image/jpeg' })).catch(() => null); };
+    preload();
+    new MutationObserver(preload).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    let ready = {};
     const appShare = (name) => async () => {
-      if (navigator.share) { try { await navigator.share({ title: text(), text: text(), url: url() }); return; } catch (_) { return; } }
-      try { await navigator.clipboard.writeText(url()); say('Link copied: paste it into ' + name + '.', 'Link copiato: incollalo su ' + name + '.'); }
-      catch (_) { say('Copy this link for ' + name + ': ' + url(), 'Copia questo link per ' + name + ': ' + url()); }
+      const c = cardUrl();
+      try { navigator.clipboard && navigator.clipboard.writeText(url()); } catch (_) {}
+      const f = c && (ready[c] || null);
+      if (f && navigator.canShare && navigator.canShare({ files: [f] })) {
+        say('Link copied: add a Link sticker in ' + name + ' and paste it.', 'Link copiato: in ' + name + ' aggiungi lo sticker Link e incollalo.');
+        navigator.share({ files: [f] }).catch(() => {});
+        return;
+      }
+      if (c) { const a = document.createElement('a'); a.href = c; a.download = c.split('/').pop(); document.body.appendChild(a); a.click(); a.remove(); }
+      say('Story card downloaded and link copied: post the image on ' + name + ' and paste the link.',
+          'Card scaricata e link copiato: pubblica l’immagine su ' + name + ' e incolla il link.');
     };
+    // i file vanno pronti prima del tocco: Safari vuole la condivisione subito dopo il gesto
+    const keep = () => { const c = cardUrl(); if (c && files[c]) files[c].then(f => { if (f) ready[c] = f; }); };
+    keep(); new MutationObserver(keep).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     const ig = box.querySelector('.share-ig'); if (ig) ig.addEventListener('click', appShare('Instagram'));
     const tt = box.querySelector('.share-tt'); if (tt) tt.addEventListener('click', appShare('TikTok'));
     const copy = box.querySelector('.share-copy');
