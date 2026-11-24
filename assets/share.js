@@ -26,7 +26,7 @@
     const cardUrl = () => box.dataset['story' + (lang() === 'it' ? 'It' : 'En')];
     const files = {};
     const preload = () => { const c = cardUrl(); if (!c || files[c]) return;
-      files[c] = fetch(c).then(r => r.blob()).then(b => new File([b], c.split('/').pop(), { type: 'image/jpeg' })).catch(() => null); };
+      files[c] = fetch(c).then(r => r.blob()).then(b => new File([b], c.split('/').pop().split('?')[0], { type: 'image/jpeg' })).catch(() => null); };
     preload();
     new MutationObserver(preload).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     let ready = {};
@@ -49,7 +49,7 @@
         try { await navigator.share({ title: text(), url: url() }); } catch (_) {}
         return;
       }
-      if (c) { const a = document.createElement('a'); a.href = c; a.download = c.split('/').pop(); document.body.appendChild(a); a.click(); a.remove(); }
+      if (c) { const a = document.createElement('a'); a.href = c; a.download = c.split('/').pop().split('?')[0]; document.body.appendChild(a); a.click(); a.remove(); }
       say('Story card downloaded and link copied: post the image on ' + name + ' and paste the link.',
           'Card scaricata e link copiato: pubblica l’immagine su ' + name + ' e incolla il link.');
     };
