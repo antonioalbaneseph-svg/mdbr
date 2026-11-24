@@ -33,10 +33,20 @@
     const appShare = (name) => async () => {
       const c = cardUrl();
       try { navigator.clipboard && navigator.clipboard.writeText(url()); } catch (_) {}
-      const f = c && (ready[c] || null);
-      if (f && navigator.canShare && navigator.canShare({ files: [f] })) {
+      let f = c ? ready[c] : null;
+      if (!f && c) { try { f = await (files[c] || (preload(), files[c])); } catch (_) { f = null; } }
+      const canFiles = f && navigator.canShare && (() => { try { return navigator.canShare({ files: [f] }); } catch (_) { return false; } })();
+      if (canFiles) {
         say('Link copied: add a Link sticker in ' + name + ' and paste it.', 'Link copiato: in ' + name + ' aggiungi lo sticker Link e incollalo.');
-        navigator.share({ files: [f] }).catch(() => {});
+        try { await navigator.share({ files: [f] }); } catch (e) {
+          if (e && e.name === 'NotAllowedError' && navigator.share) { try { await navigator.share({ title: text(), url: url() }); } catch (_) {} }
+        }
+        return;
+      }
+      if (navigator.share) { // telefono, ma il browser non sa allegare immagini: si condivide il link
+        say('This browser cannot attach the image: open the page in Chrome or Safari to share the story card.',
+            'Questo browser non sa allegare l’immagine: apri la pagina in Chrome o Safari per condividere la card.');
+        try { await navigator.share({ title: text(), url: url() }); } catch (_) {}
         return;
       }
       if (c) { const a = document.createElement('a'); a.href = c; a.download = c.split('/').pop(); document.body.appendChild(a); a.click(); a.remove(); }
