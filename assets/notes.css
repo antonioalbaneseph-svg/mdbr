@@ -72,3 +72,6 @@ footer{border-top:1px solid var(--line);padding:25px 0 40px;color:var(--muted);f
 .podcast-rates{display:inline-flex;gap:9px}
 .podcast-rates button[aria-pressed="true"]{color:var(--ink);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--accent)}
 .podcast-rates button:hover{color:var(--accent)}
+.article h2{font:400 clamp(26px,3vw,34px)/1.25 Georgia,'Times New Roman',serif;letter-spacing:-.02em;color:var(--ink);margin:64px 0 24px}
+.article .article-list{margin:0 0 29px;padding-left:22px}.article .article-list li{font:18px/1.95 Georgia,'Times New Roman',serif;color:#e0e8e1;margin:0 0 14px}.article .article-list strong{font-weight:400;font-style:italic;color:var(--accent)}
+@media(max-width:640px){.article h2{margin:48px 0 18px}.article .article-list li{font-size:17px;line-height:1.85}}
