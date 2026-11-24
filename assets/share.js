@@ -57,6 +57,13 @@
     // i file vanno pronti prima del tocco: Safari vuole la condivisione subito dopo il gesto
     const keep = () => { const c = cardUrl(); if (c && files[c]) files[c].then(f => { if (f) ready[c] = f; }); };
     keep(); new MutationObserver(keep).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    const fbCap = box.querySelector('.share-fb');
+    if (fbCap) fbCap.addEventListener('click', () => {
+      const k = 'capFb' + (lang() === 'it' ? 'It' : 'En'); const t = box.dataset[k];
+      if (!t) return;
+      try { navigator.clipboard && navigator.clipboard.writeText(t); } catch (_) {}
+      say('Text copied: paste it above the preview in Facebook.', 'Testo copiato: incollalo sopra l’anteprima su Facebook.');
+    });
     const ig = box.querySelector('.share-ig'); if (ig) ig.addEventListener('click', appShare('Instagram', 'ig'));
     const tt = box.querySelector('.share-tt'); if (tt) tt.addEventListener('click', appShare('TikTok', 'tt'));
     const copy = box.querySelector('.share-copy');
