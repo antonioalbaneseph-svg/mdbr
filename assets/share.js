@@ -23,19 +23,20 @@
     }
     // Instagram e TikTok non accettano link dal web: si condivide la card verticale della pagina
     // (pronta per storie e TikTok) e intanto si copia il link, da incollare nello sticker Link.
-    const cardUrl = () => box.dataset['story' + (lang() === 'it' ? 'It' : 'En')];
+    const cardUrl = (key) => (key === 'tt' && box.dataset['storyTt' + (lang() === 'it' ? 'It' : 'En')]) || box.dataset['story' + (lang() === 'it' ? 'It' : 'En')];
     const files = {};
-    const preload = () => { const c = cardUrl(); if (!c || files[c]) return;
+    const preload1 = (c) => { if (!c || files[c]) return;
       files[c] = fetch(c).then(r => r.blob()).then(b => new File([b], c.split('/').pop().split('?')[0], { type: 'image/jpeg' })).catch(() => null); };
+    const preload = () => { preload1(cardUrl('ig')); preload1(cardUrl('tt')); };
     preload();
     new MutationObserver(preload).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     let ready = {};
     const caption = (key) => box.dataset['cap' + key.charAt(0).toUpperCase() + key.slice(1) + (lang() === 'it' ? 'It' : 'En')] || url();
     const appShare = (name, key) => async () => {
-      const c = cardUrl();
+      const c = cardUrl(key);
       try { navigator.clipboard && navigator.clipboard.writeText(caption(key)); } catch (_) {}
       let f = c ? ready[c] : null;
-      if (!f && c) { try { f = await (files[c] || (preload(), files[c])); } catch (_) { f = null; } }
+      if (!f && c) { try { f = await (files[c] || (preload1(c), files[c])); } catch (_) { f = null; } }
       const canFiles = f && navigator.canShare && (() => { try { return navigator.canShare({ files: [f] }); } catch (_) { return false; } })();
       if (canFiles) {
         say('Caption, hashtags and link copied: paste them into ' + name + '. For a Link sticker keep only the address.', 'Testo, hashtag e link copiati: incollali su ' + name + '. Nello sticker Link tieni solo l’indirizzo.');
@@ -55,7 +56,7 @@
           'Card scaricata; testo, hashtag e link copiati: pubblica l’immagine su ' + name + ' e incolla il testo.');
     };
     // i file vanno pronti prima del tocco: Safari vuole la condivisione subito dopo il gesto
-    const keep = () => { const c = cardUrl(); if (c && files[c]) files[c].then(f => { if (f) ready[c] = f; }); };
+    const keep = () => { [cardUrl('ig'), cardUrl('tt')].forEach(c => { if (c && files[c]) files[c].then(f => { if (f) ready[c] = f; }); }); };
     keep(); new MutationObserver(keep).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     const fbCap = box.querySelector('.share-fb');
     if (fbCap) fbCap.addEventListener('click', () => {
