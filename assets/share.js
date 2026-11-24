@@ -30,14 +30,15 @@
     preload();
     new MutationObserver(preload).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     let ready = {};
-    const appShare = (name) => async () => {
+    const caption = (key) => box.dataset['cap' + key.charAt(0).toUpperCase() + key.slice(1) + (lang() === 'it' ? 'It' : 'En')] || url();
+    const appShare = (name, key) => async () => {
       const c = cardUrl();
-      try { navigator.clipboard && navigator.clipboard.writeText(url()); } catch (_) {}
+      try { navigator.clipboard && navigator.clipboard.writeText(caption(key)); } catch (_) {}
       let f = c ? ready[c] : null;
       if (!f && c) { try { f = await (files[c] || (preload(), files[c])); } catch (_) { f = null; } }
       const canFiles = f && navigator.canShare && (() => { try { return navigator.canShare({ files: [f] }); } catch (_) { return false; } })();
       if (canFiles) {
-        say('Link copied: add a Link sticker in ' + name + ' and paste it.', 'Link copiato: in ' + name + ' aggiungi lo sticker Link e incollalo.');
+        say('Caption, hashtags and link copied: paste them into ' + name + '. For a Link sticker keep only the address.', 'Testo, hashtag e link copiati: incollali su ' + name + '. Nello sticker Link tieni solo l’indirizzo.');
         try { await navigator.share({ files: [f] }); } catch (e) {
           if (e && e.name === 'NotAllowedError' && navigator.share) { try { await navigator.share({ title: text(), url: url() }); } catch (_) {} }
         }
@@ -50,14 +51,14 @@
         return;
       }
       if (c) { const a = document.createElement('a'); a.href = c; a.download = c.split('/').pop().split('?')[0]; document.body.appendChild(a); a.click(); a.remove(); }
-      say('Story card downloaded and link copied: post the image on ' + name + ' and paste the link.',
-          'Card scaricata e link copiato: pubblica l’immagine su ' + name + ' e incolla il link.');
+      say('Story card downloaded; caption, hashtags and link copied: post the image on ' + name + ' and paste the text.',
+          'Card scaricata; testo, hashtag e link copiati: pubblica l’immagine su ' + name + ' e incolla il testo.');
     };
     // i file vanno pronti prima del tocco: Safari vuole la condivisione subito dopo il gesto
     const keep = () => { const c = cardUrl(); if (c && files[c]) files[c].then(f => { if (f) ready[c] = f; }); };
     keep(); new MutationObserver(keep).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-    const ig = box.querySelector('.share-ig'); if (ig) ig.addEventListener('click', appShare('Instagram'));
-    const tt = box.querySelector('.share-tt'); if (tt) tt.addEventListener('click', appShare('TikTok'));
+    const ig = box.querySelector('.share-ig'); if (ig) ig.addEventListener('click', appShare('Instagram', 'ig'));
+    const tt = box.querySelector('.share-tt'); if (tt) tt.addEventListener('click', appShare('TikTok', 'tt'));
     const copy = box.querySelector('.share-copy');
     if (copy) copy.addEventListener('click', async () => {
       try { await navigator.clipboard.writeText(url()); say('Link copied.', 'Link copiato.'); }
