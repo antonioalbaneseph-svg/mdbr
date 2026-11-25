@@ -232,20 +232,21 @@
     .latest { border-top:1px solid var(--ink); padding:46px 0 58px; }
     .latest-head { display:flex; justify-content:space-between; align-items:baseline; gap:18px; margin-bottom:26px; }
     .latest-label { color:var(--accent); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+    .latest-links { display:flex; gap:22px; }
     .latest-all { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; border-bottom:1px solid var(--ink); padding-bottom:4px; }
     .latest-all:hover { color:var(--accent); border-color:var(--accent); }
-    .latest-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:0 65px; }
-    .latest-card { display:grid; grid-template-columns:150px 1fr; gap:22px; align-items:start; border-top:1px solid var(--line); padding-top:22px; }
-    .latest-thumb { display:block; aspect-ratio:4/3; overflow:hidden; background:#141816; border:1px solid var(--line); }
+    .latest-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0 44px; }
+    .latest-card { display:grid; grid-template-rows:auto 1fr; gap:18px; border-top:1px solid var(--line); padding-top:22px; }
+    .latest-thumb { display:block; aspect-ratio:16/9; overflow:hidden; background:#141816; border:1px solid var(--line); }
     .latest-thumb img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(.15); transition:filter .2s; }
     .latest-card:hover .latest-thumb img { filter:none; }
     .latest-meta { color:var(--muted); font-size:10px; letter-spacing:.13em; text-transform:uppercase; }
     .latest-meta span:first-child { color:var(--accent); font-weight:700; }
-    .latest-card h3 { font-family:Georgia,'Times New Roman',serif; font-weight:400; font-size:clamp(23px,2.3vw,31px); letter-spacing:-.03em; line-height:1.12; margin:10px 0 8px; }
+    .latest-card h3 { font-family:Georgia,'Times New Roman',serif; font-weight:400; font-size:clamp(22px,2vw,29px); letter-spacing:-.03em; line-height:1.12; margin:10px 0 8px; }
     .latest-card h3 a:hover { color:var(--accent); }
     .latest-card p { font-size:14px; line-height:1.65; color:#bac7bd; margin:0; }
-    @media (max-width: 900px) { .latest-grid { gap:0 36px; } .latest-card { grid-template-columns:110px 1fr; gap:16px; } }
-    @media (max-width: 640px) { .latest { padding:38px 0 46px; } .latest-grid { grid-template-columns:1fr; gap:22px; } .latest-card { grid-template-columns:96px 1fr; } .latest-card h3 { font-size:23px; } }
+    @media (max-width: 900px) { .latest-grid { gap:0 26px; } }
+    @media (max-width: 640px) { .latest { padding:38px 0 46px; } .latest-head { flex-wrap:wrap; } .latest-grid { grid-template-columns:1fr; gap:22px; } .latest-card { grid-template-columns:110px 1fr; grid-template-rows:none; gap:16px; align-items:start; } .latest-thumb { aspect-ratio:4/3; } .latest-card h3 { font-size:22px; } }
   </style>
 </head>
 <body>
@@ -311,10 +312,11 @@
 
     <section class="latest" id="latest" aria-labelledby="latest-title">
       <div class="wrap">
-        <div class="latest-head"><span class="latest-label" id="latest-title" data-en="Latest notes" data-it="Ultime note">Latest notes</span><a class="latest-all" href="/notes/" data-en="All notes →" data-it="Tutte le note →">All notes →</a></div>
+        <div class="latest-head"><span class="latest-label" id="latest-title" data-en="News" data-it="News">News</span><span class="latest-links"><a class="latest-all" href="/notes/" data-en="Notes →" data-it="Note →">Notes →</a><a class="latest-all" href="/talks/" data-en="Talks →" data-it="Interventi →">Talks →</a></span></div>
         <div class="latest-grid" id="latest-grid">
-          <article class="latest-card"><a class="latest-thumb" href="/notes/solo-un-gioco/" tabindex="-1" aria-hidden="true"><img src="/assets/notes/solo-un-gioco.jpg?v=3" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Current affairs" data-it="Attualità">Current affairs</span> · <time datetime="2026-11-24" data-en="24 November 2026" data-it="24 novembre 2026">24 November 2026</time></div><h3><a href="/notes/solo-un-gioco/" data-en="GTA VI: just a game" data-it="GTA VI: solo un gioco">GTA VI: just a game</a></h3><p data-en="What is really in play in the most anticipated game of the decade?" data-it="Cosa è in gioco nel gioco più atteso del decennio?">What is really in play in the most anticipated game of the decade?</p></div></article>
-          <article class="latest-card"><a class="latest-thumb" href="/notes/lavoro-intelligente/" tabindex="-1" aria-hidden="true"><img src="/assets/events/jobless-society-forum-2026.jpg" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="From the field" data-it="Dal campo">From the field</span> · <time datetime="2026-11-16" data-en="16 November 2026" data-it="16 novembre 2026">16 November 2026</time></div><h3><a href="/notes/lavoro-intelligente/" data-en="Intelligent work" data-it="Lavoro intelligente">Intelligent work</a></h3><p data-en="The AI worker. Machines that speak work even better. What is this work working on?" data-it="L’IA operaia. Le macchine che parlano lavorano anche meglio. A cosa lavora questo lavoro?">The AI worker. Machines that speak work even better. What is this work working on?</p></div></article>
+          <article class="latest-card"><a class="latest-thumb" href="/notes/solo-un-gioco/" tabindex="-1" aria-hidden="true"><img src="/assets/notes/solo-un-gioco.jpg?v=3" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Note · Current affairs" data-it="Nota · Attualità">Note · Current affairs</span> · <time datetime="2026-11-24" data-en="24 November 2026" data-it="24 novembre 2026">24 November 2026</time></div><h3><a href="/notes/solo-un-gioco/" data-en="GTA VI: just a game" data-it="GTA VI: solo un gioco">GTA VI: just a game</a></h3><p data-en="What is really in play in the most anticipated game of the decade?" data-it="Cosa è in gioco nel gioco più atteso del decennio?">What is really in play in the most anticipated game of the decade?</p></div></article>
+          <article class="latest-card"><a class="latest-thumb" href="/talks/after-prometheus/" tabindex="-1" aria-hidden="true"><img src="/assets/events/malta-2026-wide.jpg" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Talk" data-it="Intervento">Talk</span> · <time datetime="2026-11-20" data-en="20 November 2026" data-it="20 novembre 2026">20 November 2026</time></div><h3><a href="/talks/after-prometheus/" data-en="After Prometheus" data-it="After Prometheus">After Prometheus</a></h3><p data-en="Algorithmic Power, Residual Life, and the Fate of the Human" data-it="Algorithmic Power, Residual Life, and the Fate of the Human">Algorithmic Power, Residual Life, and the Fate of the Human</p></div></article>
+          <article class="latest-card"><a class="latest-thumb" href="/notes/lavoro-intelligente/" tabindex="-1" aria-hidden="true"><img src="/assets/events/jobless-society-forum-2026.jpg" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Note · From the field" data-it="Nota · Dal campo">Note · From the field</span> · <time datetime="2026-11-16" data-en="16 November 2026" data-it="16 novembre 2026">16 November 2026</time></div><h3><a href="/notes/lavoro-intelligente/" data-en="Intelligent work" data-it="Lavoro intelligente">Intelligent work</a></h3><p data-en="The AI worker. Machines that speak work even better. What is this work working on?" data-it="L’IA operaia. Le macchine che parlano lavorano anche meglio. A cosa lavora questo lavoro?">The AI worker. Machines that speak work even better. What is this work working on?</p></div></article>
         </div>
       </div>
     </section>
@@ -543,29 +545,40 @@
       let preferredLanguage = 'en';
       try { preferredLanguage = localStorage.getItem('mdbr-language') || 'en'; } catch (_) {}
       setLanguage(preferredLanguage === 'it' ? 'it' : 'en');
-      // Latest notes strip: refresh from the Notes archive, so new notes appear without editing this page.
-      fetch('/notes/', { cache: 'no-cache' }).then(r => r.ok ? r.text() : Promise.reject()).then(text => {
-        const doc = new DOMParser().parseFromString(text, 'text/html');
-        const cards = [...doc.querySelectorAll('.note-list .note-card')].slice(0, 2);
-        if (cards.length === 0) return;
+      // Latest publications strip: the 3 most recent items across Notes and Talks, read from their archives.
+      (() => {
+        const sources = [
+          { url: '/notes/', en: 'Note', it: 'Nota', useCat: true },
+          { url: '/talks/', en: 'Talk', it: 'Intervento', useCat: false }
+        ];
         const esc = v => String(v || '').replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
         const fmt = (iso, loc) => { try { return new Intl.DateTimeFormat(loc, { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }).format(new Date(iso + 'T12:00:00Z')); } catch (_) { return iso; } };
-        const lang = document.documentElement.lang === 'it' ? 'it' : 'en';
-        const html = cards.map(c => {
-          const a = c.querySelector('h2 a'), cat = c.querySelector('.note-meta > span'), p = c.querySelector('h2 + p'), img = c.querySelector('.note-thumb img'), t = c.querySelector('time');
-          if (!a) return '';
-          const href = a.getAttribute('href'), d = t ? t.getAttribute('datetime') : '';
-          const pair = (el, fb) => [el ? (el.dataset.en || el.textContent) : fb, el ? (el.dataset.it || el.textContent) : fb];
-          const [ten, tit] = pair(a, ''), [cen, cit] = pair(cat, ''), [pen, pit] = pair(p, '');
-          const den = fmt(d, 'en-GB'), dit = fmt(d, 'it-IT');
-          const L = (e, i) => lang === 'it' ? i : e;
-          return '<article class="latest-card">' + (img ? '<a class="latest-thumb" href="' + esc(href) + '" tabindex="-1" aria-hidden="true"><img src="' + esc(img.getAttribute('src')) + '" alt="" loading="lazy"></a>' : '<span></span>') +
-            '<div><div class="latest-meta"><span data-en="' + esc(cen) + '" data-it="' + esc(cit) + '">' + esc(L(cen, cit)) + '</span> · <time datetime="' + esc(d) + '" data-en="' + esc(den) + '" data-it="' + esc(dit) + '">' + esc(L(den, dit)) + '</time></div>' +
-            '<h3><a href="' + esc(href) + '" data-en="' + esc(ten) + '" data-it="' + esc(tit) + '">' + esc(L(ten, tit)) + '</a></h3>' +
-            '<p data-en="' + esc(pen) + '" data-it="' + esc(pit) + '">' + esc(L(pen, pit)) + '</p></div></article>';
-        }).join('');
-        if (html) document.getElementById('latest-grid').innerHTML = html;
-      }).catch(() => {});
+        const pair = el => el ? [el.dataset.en || el.textContent.trim(), el.dataset.it || el.textContent.trim()] : ['', ''];
+        Promise.all(sources.map(src => fetch(src.url, { cache: 'no-cache' }).then(r => r.ok ? r.text() : '').catch(() => '').then(text => {
+          if (!text) return [];
+          const doc = new DOMParser().parseFromString(text, 'text/html');
+          return [...doc.querySelectorAll('.note-list .note-card')].map(c => {
+            const a = c.querySelector('h2 a'), t = c.querySelector('time');
+            if (!a || !t) return null;
+            const [cen, cit] = src.useCat ? pair(c.querySelector('.note-meta > span')) : ['', ''];
+            const img = c.querySelector('.note-thumb img');
+            return { href: a.getAttribute('href'), date: t.getAttribute('datetime'), title: pair(a), sub: pair(c.querySelector('h2 + p')),
+              kind: [src.en + (cen ? ' · ' + cen : ''), src.it + (cit ? ' · ' + cit : '')], img: img ? img.getAttribute('src') : '' };
+          }).filter(Boolean);
+        }))).then(lists => {
+          const items = lists.flat().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
+          if (items.length === 0) return;
+          const it = document.documentElement.lang === 'it';
+          const L = p => it ? p[1] : p[0];
+          const node = (tag, p, extra) => '<' + tag + (extra || '') + ' data-en="' + esc(p[0]) + '" data-it="' + esc(p[1]) + '">' + esc(L(p)) + '</' + tag + '>';
+          document.getElementById('latest-grid').innerHTML = items.map(x => {
+            const d = [fmt(x.date, 'en-GB'), fmt(x.date, 'it-IT')];
+            return '<article class="latest-card">' + (x.img ? '<a class="latest-thumb" href="' + esc(x.href) + '" tabindex="-1" aria-hidden="true"><img src="' + esc(x.img) + '" alt="" loading="lazy"></a>' : '<span></span>') +
+              '<div><div class="latest-meta">' + node('span', x.kind) + ' · ' + node('time', d, ' datetime="' + esc(x.date) + '"') + '</div>' +
+              '<h3>' + node('a', x.title, ' href="' + esc(x.href) + '"') + '</h3>' + node('p', x.sub) + '</div></article>';
+          }).join('');
+        });
+      })();
       const menuToggle = document.getElementById('menu-toggle');
       const siteNav = document.getElementById('site-nav');
       menuToggle.addEventListener('click', () => {
