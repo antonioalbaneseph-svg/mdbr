@@ -235,8 +235,14 @@
     .latest-links { display:flex; gap:22px; }
     .latest-all { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; border-bottom:1px solid var(--ink); padding-bottom:4px; }
     .latest-all:hover { color:var(--accent); border-color:var(--accent); }
-    .latest-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0 44px; }
-    .latest-card { display:grid; grid-template-rows:auto 1fr; gap:18px; border-top:1px solid var(--line); padding-top:22px; }
+    .latest-grid { display:grid; grid-auto-flow:column; grid-auto-columns:calc((100% - 88px) / 3); gap:0 44px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:var(--line) transparent; padding-bottom:14px; }
+    .latest-grid::-webkit-scrollbar { height:4px; } .latest-grid::-webkit-scrollbar-thumb { background:var(--line); }
+    .latest-card { display:grid; grid-template-rows:auto 1fr; gap:18px; border-top:1px solid var(--line); padding-top:22px; scroll-snap-align:start; }
+    .latest-nav { display:flex; gap:8px; margin-left:10px; }
+    .latest-nav button { width:34px; height:34px; border:1px solid var(--line); border-radius:50%; background:none; color:var(--ink); font-size:15px; cursor:pointer; transition:background .2s,color .2s,opacity .2s; }
+    .latest-nav button:hover:not(:disabled) { background:var(--ink); color:#000; }
+    .latest-nav button:disabled { opacity:.3; cursor:default; }
+    .latest-links { align-items:center; }
     .latest-thumb { display:block; aspect-ratio:16/9; overflow:hidden; background:#141816; border:1px solid var(--line); }
     .latest-thumb img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(.15); transition:filter .2s; }
     .latest-card:hover .latest-thumb img { filter:none; }
@@ -245,8 +251,8 @@
     .latest-card h3 { font-family:Georgia,'Times New Roman',serif; font-weight:400; font-size:clamp(22px,2vw,29px); letter-spacing:-.03em; line-height:1.12; margin:10px 0 8px; }
     .latest-card h3 a:hover { color:var(--accent); }
     .latest-card p { font-size:14px; line-height:1.65; color:#bac7bd; margin:0; }
-    @media (max-width: 900px) { .latest-grid { gap:0 26px; } }
-    @media (max-width: 640px) { .latest { padding:38px 0 46px; } .latest-head { flex-wrap:wrap; } .latest-grid { grid-template-columns:1fr; gap:22px; } .latest-card { grid-template-columns:110px 1fr; grid-template-rows:none; gap:16px; align-items:start; } .latest-thumb { aspect-ratio:4/3; } .latest-card h3 { font-size:22px; } }
+    @media (max-width: 900px) { .latest-grid { gap:0 26px; grid-auto-columns:calc((100% - 52px) / 3); } }
+    @media (max-width: 640px) { .latest { padding:38px 0 46px; } .latest-head { flex-wrap:wrap; } .latest-nav { display:none; } .latest-grid { gap:0 16px; grid-auto-columns:calc((100% - 16px) / 2 - 14px); } .latest-card { gap:12px; padding-top:16px; } .latest-meta { font-size:9px; letter-spacing:.1em; } .latest-card h3 { font-size:19px; margin:7px 0 6px; } .latest-card p { font-size:13px; line-height:1.55; } }
   </style>
 </head>
 <body>
@@ -297,6 +303,17 @@
 
     
 
+    <section class="latest" id="latest" aria-labelledby="latest-title">
+      <div class="wrap">
+        <div class="latest-head"><span class="latest-label" id="latest-title" data-en="News" data-it="News">News</span><span class="latest-links"><a class="latest-all" href="/notes/" data-en="Notes →" data-it="Note →">Notes →</a><a class="latest-all" href="/talks/" data-en="Talks →" data-it="Interventi →">Talks →</a><span class="latest-nav"><button type="button" id="latest-prev" aria-label="Più recenti / Newer">←</button><button type="button" id="latest-next" aria-label="Meno recenti / Older">→</button></span></span></div>
+        <div class="latest-grid" id="latest-grid">
+          <article class="latest-card"><a class="latest-thumb" href="/notes/solo-un-gioco/" tabindex="-1" aria-hidden="true"><img src="/assets/notes/solo-un-gioco.jpg?v=3" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Note · Current affairs" data-it="Nota · Attualità">Note · Current affairs</span> · <time datetime="2026-11-24" data-en="24 November 2026" data-it="24 novembre 2026">24 November 2026</time></div><h3><a href="/notes/solo-un-gioco/" data-en="GTA VI: just a game" data-it="GTA VI: solo un gioco">GTA VI: just a game</a></h3><p data-en="What is really in play in the most anticipated game of the decade?" data-it="Cosa è in gioco nel gioco più atteso del decennio?">What is really in play in the most anticipated game of the decade?</p></div></article>
+          <article class="latest-card"><a class="latest-thumb" href="/talks/after-prometheus/" tabindex="-1" aria-hidden="true"><img src="/assets/events/malta-2026-wide.jpg" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Talk" data-it="Intervento">Talk</span> · <time datetime="2026-11-20" data-en="20 November 2026" data-it="20 novembre 2026">20 November 2026</time></div><h3><a href="/talks/after-prometheus/" data-en="After Prometheus" data-it="After Prometheus">After Prometheus</a></h3><p data-en="Algorithmic Power, Residual Life, and the Fate of the Human" data-it="Algorithmic Power, Residual Life, and the Fate of the Human">Algorithmic Power, Residual Life, and the Fate of the Human</p></div></article>
+          <article class="latest-card"><a class="latest-thumb" href="/notes/lavoro-intelligente/" tabindex="-1" aria-hidden="true"><img src="/assets/events/jobless-society-forum-2026.jpg" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Note · From the field" data-it="Nota · Dal campo">Note · From the field</span> · <time datetime="2026-11-16" data-en="16 November 2026" data-it="16 novembre 2026">16 November 2026</time></div><h3><a href="/notes/lavoro-intelligente/" data-en="Intelligent work" data-it="Lavoro intelligente">Intelligent work</a></h3><p data-en="The AI worker. Machines that speak work even better. What is this work working on?" data-it="L’IA operaia. Le macchine che parlano lavorano anche meglio. A cosa lavora questo lavoro?">The AI worker. Machines that speak work even better. What is this work working on?</p></div></article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="purpose" aria-labelledby="purpose-title">
       <div class="wrap">
         <div class="section-head"><span class="section-index">01</span><span class="section-label" data-en="About MDBR" data-it="Cos’è MDBR">About MDBR</span><span class="section-aside" data-en="An open intellectual practice" data-it="Una pratica intellettuale aperta">An open intellectual practice</span></div>
@@ -306,17 +323,6 @@
             <p data-en="MDBR is an independent research initiative devoted to fundamental questions at the intersection of philosophy, language and technology. Its starting point is that technical systems change not only what we can do, but also what counts as an explanation, a judgment or a reason." data-it="MDBR è un'iniziativa di ricerca indipendente dedicata alle questioni fondamentali che attraversano filosofia, linguaggio e tecnica. Il punto di partenza è che i sistemi tecnici modificano non soltanto ciò che possiamo fare, ma anche ciò che conta come spiegazione, giudizio o ragione.">MDBR is an independent research initiative devoted to fundamental questions at the intersection of philosophy, language and technology. Its starting point is that technical systems change not only what we can do, but also what counts as an explanation, a judgment or a reason.</p>
             <p data-en="Rather than treating philosophy as an afterthought to innovation, MDBR develops conceptual inquiries that begin with the assumptions embedded in models, measures and methods. It seeks conversations across disciplines, without reducing philosophical problems to technical ones." data-it="Anziché intendere la filosofia come una riflessione successiva all'innovazione, MDBR sviluppa indagini concettuali a partire dai presupposti incorporati in modelli, misure e metodi. Cerca il confronto tra discipline, senza ridurre i problemi filosofici a problemi tecnici.">Rather than treating philosophy as an afterthought to innovation, MDBR develops conceptual inquiries that begin with the assumptions embedded in models, measures and methods. It seeks conversations across disciplines, without reducing philosophical problems to technical ones.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="latest" id="latest" aria-labelledby="latest-title">
-      <div class="wrap">
-        <div class="latest-head"><span class="latest-label" id="latest-title" data-en="News" data-it="News">News</span><span class="latest-links"><a class="latest-all" href="/notes/" data-en="Notes →" data-it="Note →">Notes →</a><a class="latest-all" href="/talks/" data-en="Talks →" data-it="Interventi →">Talks →</a></span></div>
-        <div class="latest-grid" id="latest-grid">
-          <article class="latest-card"><a class="latest-thumb" href="/notes/solo-un-gioco/" tabindex="-1" aria-hidden="true"><img src="/assets/notes/solo-un-gioco.jpg?v=3" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Note · Current affairs" data-it="Nota · Attualità">Note · Current affairs</span> · <time datetime="2026-11-24" data-en="24 November 2026" data-it="24 novembre 2026">24 November 2026</time></div><h3><a href="/notes/solo-un-gioco/" data-en="GTA VI: just a game" data-it="GTA VI: solo un gioco">GTA VI: just a game</a></h3><p data-en="What is really in play in the most anticipated game of the decade?" data-it="Cosa è in gioco nel gioco più atteso del decennio?">What is really in play in the most anticipated game of the decade?</p></div></article>
-          <article class="latest-card"><a class="latest-thumb" href="/talks/after-prometheus/" tabindex="-1" aria-hidden="true"><img src="/assets/events/malta-2026-wide.jpg" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Talk" data-it="Intervento">Talk</span> · <time datetime="2026-11-20" data-en="20 November 2026" data-it="20 novembre 2026">20 November 2026</time></div><h3><a href="/talks/after-prometheus/" data-en="After Prometheus" data-it="After Prometheus">After Prometheus</a></h3><p data-en="Algorithmic Power, Residual Life, and the Fate of the Human" data-it="Algorithmic Power, Residual Life, and the Fate of the Human">Algorithmic Power, Residual Life, and the Fate of the Human</p></div></article>
-          <article class="latest-card"><a class="latest-thumb" href="/notes/lavoro-intelligente/" tabindex="-1" aria-hidden="true"><img src="/assets/events/jobless-society-forum-2026.jpg" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Note · From the field" data-it="Nota · Dal campo">Note · From the field</span> · <time datetime="2026-11-16" data-en="16 November 2026" data-it="16 novembre 2026">16 November 2026</time></div><h3><a href="/notes/lavoro-intelligente/" data-en="Intelligent work" data-it="Lavoro intelligente">Intelligent work</a></h3><p data-en="The AI worker. Machines that speak work even better. What is this work working on?" data-it="L’IA operaia. Le macchine che parlano lavorano anche meglio. A cosa lavora questo lavoro?">The AI worker. Machines that speak work even better. What is this work working on?</p></div></article>
         </div>
       </div>
     </section>
@@ -566,7 +572,7 @@
               kind: [src.en + (cen ? ' · ' + cen : ''), src.it + (cit ? ' · ' + cit : '')], img: img ? img.getAttribute('src') : '' };
           }).filter(Boolean);
         }))).then(lists => {
-          const items = lists.flat().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
+          const items = lists.flat().sort((a, b) => b.date.localeCompare(a.date));
           if (items.length === 0) return;
           const it = document.documentElement.lang === 'it';
           const L = p => it ? p[1] : p[0];
@@ -577,7 +583,16 @@
               '<div><div class="latest-meta">' + node('span', x.kind) + ' · ' + node('time', d, ' datetime="' + esc(x.date) + '"') + '</div>' +
               '<h3>' + node('a', x.title, ' href="' + esc(x.href) + '"') + '</h3>' + node('p', x.sub) + '</div></article>';
           }).join('');
+          updateNav();
         });
+        const grid = document.getElementById('latest-grid'), prev = document.getElementById('latest-prev'), next = document.getElementById('latest-next');
+        const step = () => { const c = grid.querySelector('.latest-card'); return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(grid).columnGap || 0) : grid.clientWidth; };
+        function updateNav() { prev.disabled = grid.scrollLeft <= 2; next.disabled = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 2; }
+        prev.addEventListener('click', () => grid.scrollBy({ left: -step(), behavior: 'smooth' }));
+        next.addEventListener('click', () => grid.scrollBy({ left: step(), behavior: 'smooth' }));
+        grid.addEventListener('scroll', updateNav, { passive: true });
+        window.addEventListener('resize', updateNav);
+        updateNav();
       })();
       const menuToggle = document.getElementById('menu-toggle');
       const siteNav = document.getElementById('site-nav');
