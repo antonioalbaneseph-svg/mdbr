@@ -229,6 +229,23 @@
       .header-actions .language { padding-left:0; border-left:0; }
       .masthead-inner { gap:10px; }
     }
+    .latest { border-top:1px solid var(--ink); padding:46px 0 58px; }
+    .latest-head { display:flex; justify-content:space-between; align-items:baseline; gap:18px; margin-bottom:26px; }
+    .latest-label { color:var(--accent); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+    .latest-all { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    .latest-all:hover { color:var(--accent); border-color:var(--accent); }
+    .latest-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:0 65px; }
+    .latest-card { display:grid; grid-template-columns:150px 1fr; gap:22px; align-items:start; border-top:1px solid var(--line); padding-top:22px; }
+    .latest-thumb { display:block; aspect-ratio:4/3; overflow:hidden; background:#141816; border:1px solid var(--line); }
+    .latest-thumb img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(.15); transition:filter .2s; }
+    .latest-card:hover .latest-thumb img { filter:none; }
+    .latest-meta { color:var(--muted); font-size:10px; letter-spacing:.13em; text-transform:uppercase; }
+    .latest-meta span:first-child { color:var(--accent); font-weight:700; }
+    .latest-card h3 { font-family:Georgia,'Times New Roman',serif; font-weight:400; font-size:clamp(23px,2.3vw,31px); letter-spacing:-.03em; line-height:1.12; margin:10px 0 8px; }
+    .latest-card h3 a:hover { color:var(--accent); }
+    .latest-card p { font-size:14px; line-height:1.65; color:#bac7bd; margin:0; }
+    @media (max-width: 900px) { .latest-grid { gap:0 36px; } .latest-card { grid-template-columns:110px 1fr; gap:16px; } }
+    @media (max-width: 640px) { .latest { padding:38px 0 46px; } .latest-grid { grid-template-columns:1fr; gap:22px; } .latest-card { grid-template-columns:96px 1fr; } .latest-card h3 { font-size:23px; } }
   </style>
 </head>
 <body>
@@ -288,6 +305,16 @@
             <p data-en="MDBR is an independent research initiative devoted to fundamental questions at the intersection of philosophy, language and technology. Its starting point is that technical systems change not only what we can do, but also what counts as an explanation, a judgment or a reason." data-it="MDBR è un'iniziativa di ricerca indipendente dedicata alle questioni fondamentali che attraversano filosofia, linguaggio e tecnica. Il punto di partenza è che i sistemi tecnici modificano non soltanto ciò che possiamo fare, ma anche ciò che conta come spiegazione, giudizio o ragione.">MDBR is an independent research initiative devoted to fundamental questions at the intersection of philosophy, language and technology. Its starting point is that technical systems change not only what we can do, but also what counts as an explanation, a judgment or a reason.</p>
             <p data-en="Rather than treating philosophy as an afterthought to innovation, MDBR develops conceptual inquiries that begin with the assumptions embedded in models, measures and methods. It seeks conversations across disciplines, without reducing philosophical problems to technical ones." data-it="Anziché intendere la filosofia come una riflessione successiva all'innovazione, MDBR sviluppa indagini concettuali a partire dai presupposti incorporati in modelli, misure e metodi. Cerca il confronto tra discipline, senza ridurre i problemi filosofici a problemi tecnici.">Rather than treating philosophy as an afterthought to innovation, MDBR develops conceptual inquiries that begin with the assumptions embedded in models, measures and methods. It seeks conversations across disciplines, without reducing philosophical problems to technical ones.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="latest" id="latest" aria-labelledby="latest-title">
+      <div class="wrap">
+        <div class="latest-head"><span class="latest-label" id="latest-title" data-en="Latest notes" data-it="Ultime note">Latest notes</span><a class="latest-all" href="/notes/" data-en="All notes →" data-it="Tutte le note →">All notes →</a></div>
+        <div class="latest-grid" id="latest-grid">
+          <article class="latest-card"><a class="latest-thumb" href="/notes/solo-un-gioco/" tabindex="-1" aria-hidden="true"><img src="/assets/notes/solo-un-gioco.jpg?v=3" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="Current affairs" data-it="Attualità">Current affairs</span> · <time datetime="2026-11-24" data-en="24 November 2026" data-it="24 novembre 2026">24 November 2026</time></div><h3><a href="/notes/solo-un-gioco/" data-en="GTA VI: just a game" data-it="GTA VI: solo un gioco">GTA VI: just a game</a></h3><p data-en="What is really in play in the most anticipated game of the decade?" data-it="Cosa è in gioco nel gioco più atteso del decennio?">What is really in play in the most anticipated game of the decade?</p></div></article>
+          <article class="latest-card"><a class="latest-thumb" href="/notes/lavoro-intelligente/" tabindex="-1" aria-hidden="true"><img src="/assets/events/jobless-society-forum-2026.jpg" alt="" loading="lazy"></a><div><div class="latest-meta"><span data-en="From the field" data-it="Dal campo">From the field</span> · <time datetime="2026-11-16" data-en="16 November 2026" data-it="16 novembre 2026">16 November 2026</time></div><h3><a href="/notes/lavoro-intelligente/" data-en="Intelligent work" data-it="Lavoro intelligente">Intelligent work</a></h3><p data-en="The AI worker. Machines that speak work even better. What is this work working on?" data-it="L’IA operaia. Le macchine che parlano lavorano anche meglio. A cosa lavora questo lavoro?">The AI worker. Machines that speak work even better. What is this work working on?</p></div></article>
         </div>
       </div>
     </section>
@@ -516,6 +543,29 @@
       let preferredLanguage = 'en';
       try { preferredLanguage = localStorage.getItem('mdbr-language') || 'en'; } catch (_) {}
       setLanguage(preferredLanguage === 'it' ? 'it' : 'en');
+      // Latest notes strip: refresh from the Notes archive, so new notes appear without editing this page.
+      fetch('/notes/', { cache: 'no-cache' }).then(r => r.ok ? r.text() : Promise.reject()).then(text => {
+        const doc = new DOMParser().parseFromString(text, 'text/html');
+        const cards = [...doc.querySelectorAll('.note-list .note-card')].slice(0, 2);
+        if (cards.length === 0) return;
+        const esc = v => String(v || '').replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+        const fmt = (iso, loc) => { try { return new Intl.DateTimeFormat(loc, { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }).format(new Date(iso + 'T12:00:00Z')); } catch (_) { return iso; } };
+        const lang = document.documentElement.lang === 'it' ? 'it' : 'en';
+        const html = cards.map(c => {
+          const a = c.querySelector('h2 a'), cat = c.querySelector('.note-meta > span'), p = c.querySelector('h2 + p'), img = c.querySelector('.note-thumb img'), t = c.querySelector('time');
+          if (!a) return '';
+          const href = a.getAttribute('href'), d = t ? t.getAttribute('datetime') : '';
+          const pair = (el, fb) => [el ? (el.dataset.en || el.textContent) : fb, el ? (el.dataset.it || el.textContent) : fb];
+          const [ten, tit] = pair(a, ''), [cen, cit] = pair(cat, ''), [pen, pit] = pair(p, '');
+          const den = fmt(d, 'en-GB'), dit = fmt(d, 'it-IT');
+          const L = (e, i) => lang === 'it' ? i : e;
+          return '<article class="latest-card">' + (img ? '<a class="latest-thumb" href="' + esc(href) + '" tabindex="-1" aria-hidden="true"><img src="' + esc(img.getAttribute('src')) + '" alt="" loading="lazy"></a>' : '<span></span>') +
+            '<div><div class="latest-meta"><span data-en="' + esc(cen) + '" data-it="' + esc(cit) + '">' + esc(L(cen, cit)) + '</span> · <time datetime="' + esc(d) + '" data-en="' + esc(den) + '" data-it="' + esc(dit) + '">' + esc(L(den, dit)) + '</time></div>' +
+            '<h3><a href="' + esc(href) + '" data-en="' + esc(ten) + '" data-it="' + esc(tit) + '">' + esc(L(ten, tit)) + '</a></h3>' +
+            '<p data-en="' + esc(pen) + '" data-it="' + esc(pit) + '">' + esc(L(pen, pit)) + '</p></div></article>';
+        }).join('');
+        if (html) document.getElementById('latest-grid').innerHTML = html;
+      }).catch(() => {});
       const menuToggle = document.getElementById('menu-toggle');
       const siteNav = document.getElementById('site-nav');
       menuToggle.addEventListener('click', () => {
